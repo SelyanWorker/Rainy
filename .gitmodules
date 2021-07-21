@@ -1,0 +1,9 @@
+[submodule "Rainy/vendor/glfw"]
+	path = Rainy/vendor/glfw
+	url = https://github.com/SelyanWorker/glfw.git
+[submodule "Rainy/vendor/glad"]
+	path = Rainy/vendor/glad
+	url = https://github.com/SelyanWorker/glad.git
+[submodule "Rainy/vendor/spdlog"]
+	path = Rainy/vendor/spdlog
+	url = https://github.com/SelyanWorker/spdlog.git
