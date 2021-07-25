@@ -1,9 +1,13 @@
-[submodule "Rainy/vendor/glfw"]
-	path = Rainy/vendor/glfw
+[submodule "vendor/glfw"]
+	path = vendor/glfw
 	url = https://github.com/SelyanWorker/glfw.git
-[submodule "Rainy/vendor/glad"]
-	path = Rainy/vendor/glad
+[submodule "vendor/glad"]
+	path = vendor/glad
 	url = https://github.com/SelyanWorker/glad.git
-[submodule "Rainy/vendor/spdlog"]
-	path = Rainy/vendor/spdlog
+[submodule "vendor/spdlog"]
+	path = vendor/spdlog
 	url = https://github.com/SelyanWorker/spdlog.git
+[submodule "vendor/imgui"]
+	path = vendor/imgui
+	url = https://github.com/ocornut/imgui.git
+	branch = docking
