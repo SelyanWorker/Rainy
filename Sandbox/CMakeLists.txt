@@ -1,0 +1,2 @@
+add_subdirectory(basic_app)
+add_subdirectory(terrain_editor)

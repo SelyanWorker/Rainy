@@ -1,0 +1,15 @@
+add_library(Rainy.Platform.OGL
+        STATIC
+        OGLBuffer.cpp
+        OGLDebug.cpp
+        OGLFrameBuffer.cpp
+        OGLRenderer.cpp
+        OGLShader.cpp
+        OGLTexture2D.cpp
+        OGLVertexArray.cpp
+        )
+target_link_libraries(Rainy.Platform.OGL
+        PUBLIC
+        Rainy
+        glad
+        )
