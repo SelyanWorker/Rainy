@@ -1,27 +1,15 @@
 #include "application/EntryPoint.h"
 #include "imgui.h"
-#include "imgui_internal.h"
 #include "render/FrameBuffer.h"
 #include "render/Renderer.h"
-#include "render/Texture2D.h"
-#include "utils/Image.h"
 #include "render/ShaderLibrary.h"
 #include "camera/OrthographicCamera.h"
 #include "camera/PerspectiveCamera.h"
 #include "3d/Box.h"
-#include "core/Time.h"
-#include "core/Input.h"
-#include "core/KeyCodes.h"
-#include "core/Time.h"
 #include "light/Light.h"
-#include "imgui_layer/ImGuiLayer.h"
 
-//#include "Layers/BoxLayer.h"
 #include "Layers/TerrainLayer.h"
 #include "Layers/InterfaceLayer.h"
-//#include "Layers/TestTeseelationLayer.h"
-//#include "Layers/GridTest.h"
-//#include "Layers/OldLandscapeLayer.h"
 
 TerrainLayer* terrainLayer		= nullptr;
 InterfaceLayer* interfaceLayer	= nullptr;

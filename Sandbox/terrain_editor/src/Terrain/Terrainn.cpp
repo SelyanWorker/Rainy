@@ -1,9 +1,6 @@
-
 #include "Terrainn.h"
 #include "render/Renderer.h"
 #include "core/Time.h"
-
-//#include "stb_image/stb_image_write.h"
 
 namespace te {
 	constexpr uint32_t MAX_INIT_SIZE_VAL = static_cast<uint32_t>(MAX_INIT_SIZE);

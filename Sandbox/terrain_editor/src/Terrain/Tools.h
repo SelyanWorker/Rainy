@@ -1,8 +1,6 @@
 #pragma once
 
 #include "math/Math.h"
-
-//#include "../Terrain.h"
 #include "Terrainn.h"
 #include "BrushT.h"
 
