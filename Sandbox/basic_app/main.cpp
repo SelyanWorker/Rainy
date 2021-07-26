@@ -1,6 +1,9 @@
 #include "application/Application.h"
 #include "application/EntryPoint.h"
 
+void Rainy::ImGuiLayer::MenuBar()
+{}
+
 class SandboxApp : public Rainy::Application
 {
 public:

@@ -71,7 +71,7 @@ namespace Rainy {
 				{
 				case FLOAT2: element.Size = 2; element.Offset = m_stride; m_stride += sizeof(float) * 2; break;
 				case FLOAT3: element.Size = 3; element.Offset = m_stride; m_stride += sizeof(float) * 3; break;
-				case NONE: RN_CORE_ERROR("No data type specified!");
+                case NONE: RN_CORE_ERROR("No data type specified!"); break;
 				default: RN_CORE_ERROR("From BufferLayout constructor -> default in type switch");
 				}
 			}

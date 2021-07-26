@@ -110,13 +110,13 @@ namespace te {
 		//std::array<uint32_t, 4> indices = { 0, 3, 2, 1 };
 
 		m_vertexBuffer = Rainy::VertexBuffer::Create(sizeof(Vertex) * vertices.size(), vertices.data());
-		auto elemets = { Rainy::BufferElement(Rainy::FLOAT2, false), Rainy::BufferElement(Rainy::FLOAT2, false) };
-		m_vertexBuffer->SetBufferLayout({ elemets,  vertices.size() });
+		auto elements_0 = { Rainy::BufferElement(Rainy::FLOAT2, false), Rainy::BufferElement(Rainy::FLOAT2, false) };
+		m_vertexBuffer->SetBufferLayout({ elements_0,  vertices.size() });
 
 		m_sectionBuffer = Rainy::VertexBuffer::Create(sizeof(TerrainSection) * m_sectionsMap.size(), nullptr);
 		m_sectionBuffer->SubData(0, sizeof(TerrainSection) * m_sectionsToDraw.size(), m_sectionsToDraw.data());
-		elemets = { Rainy::BufferElement(Rainy::FLOAT2, false, 1), Rainy::BufferElement(Rainy::FLOAT2, false, 1) };
-		m_sectionBuffer->SetBufferLayout({ elemets,  m_sectionsToDraw.size() });
+        auto elements_1 = { Rainy::BufferElement(Rainy::FLOAT2, false, 1), Rainy::BufferElement(Rainy::FLOAT2, false, 1) };
+		m_sectionBuffer->SetBufferLayout({ elements_1,  m_sectionsToDraw.size() });
 
 		m_indexBuffer = Rainy::IndexBuffer::Create(sizeof(uint32_t) * indices.size(), indices.size(), indices.data());
 

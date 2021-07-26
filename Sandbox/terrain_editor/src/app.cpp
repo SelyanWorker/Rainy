@@ -87,8 +87,9 @@ public:
 	{
 		RN_APP_INFO("App run!");
 		terrainLayer = new TerrainLayer();
-		interfaceLayer = new InterfaceLayer();
-		PushLayer(terrainLayer);
+        PushLayer(terrainLayer);
+
+        interfaceLayer = new InterfaceLayer();
 		PushLayer(interfaceLayer);
 	}
 
