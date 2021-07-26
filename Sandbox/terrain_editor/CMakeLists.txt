@@ -12,7 +12,7 @@ target_link_libraries(terrain_editor_lib
         Rainy
         )
 
-add_executable(terrain_editor ${CMAKE_CURRENT_SOURCE_DIR}/src/Sandbox.cpp)
+add_executable(terrain_editor ${CMAKE_CURRENT_SOURCE_DIR}/src/app.cpp)
 target_link_libraries(terrain_editor
         PRIVATE
         terrain_editor_lib
