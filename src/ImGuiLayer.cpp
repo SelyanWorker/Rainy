@@ -132,7 +132,7 @@ namespace Rainy {
 
 		}
 
-		//MenuBar();
+		MenuBar();
 
 		ImGui::End();
 
