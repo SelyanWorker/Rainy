@@ -1,7 +1,7 @@
 #pragma once
 
-#include "core/Core.h"
-#include "render/Shader.h"
+#include "core/core.h"
+#include "render/shader.h"
 
 #include <glad/glad.h>
 

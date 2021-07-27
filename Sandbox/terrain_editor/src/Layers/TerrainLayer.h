@@ -1,27 +1,27 @@
 #pragma once
 
-#include "core/Time.h"
-#include "core/Input.h"
-#include "core/KeyCodes.h"
-#include "core/Time.h"
+#include "core/time.h"
+#include "core/input.h"
+#include "core/key_codes.h"
+#include "core/time.h"
 
-#include "utils/Image.h"
+#include "utils/image.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"
 
-#include "application/Application.h"
-#include "layers/Layer.h"
-#include "render/Buffer.h"
-#include "render/VertexArray.h"
-#include "render/FrameBuffer.h"
-#include "render/Renderer.h"
-#include "render/Texture2D.h"
-#include "render/ShaderLibrary.h"
-#include "camera/OrthographicCamera.h"
-#include "camera/PerspectiveCamera.h"
+#include "application/application.h"
+#include "layers/layer.h"
+#include "render/buffer.h"
+#include "render/vertex_array.h"
+#include "render/frame_buffer.h"
+#include "render/renderer.h"
+#include "render/texture_2d.h"
+#include "render/shader_library.h"
+#include "camera/orthographic_camera.h"
+#include "camera/perspective_camera.h"
 
-#include "light/Light.h"
+#include "light/light.h"
 
 #include "../Terrain/Terrainn.h"
 #include "../Terrain/Tools.h"

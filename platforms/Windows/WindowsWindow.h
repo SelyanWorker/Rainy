@@ -2,7 +2,7 @@
 
 #include "GLFW/glfw3.h"
 
-#include "core/Window.h"
+#include "core/window.h"
 
 namespace Rainy {
 	class WindowsWindow : public Window

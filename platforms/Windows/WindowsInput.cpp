@@ -1,5 +1,5 @@
-#include "core/Input.h"
-#include "application/Application.h"
+#include "core/input.h"
+#include "application/application.h"
 #include "WindowsWindow.h"
 #include "WindowsInput.h"
 

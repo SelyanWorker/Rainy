@@ -1,4 +1,4 @@
-#include "core/Log.h"
+#include "core/log.h"
 #include "OGLFrameBuffer.h"
 
 namespace Rainy {

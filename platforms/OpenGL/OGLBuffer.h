@@ -1,6 +1,6 @@
 #pragma once
 
-#include "render/Buffer.h"
+#include "render/buffer.h"
 
 #include <glad/glad.h>
 

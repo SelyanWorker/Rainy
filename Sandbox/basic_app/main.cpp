@@ -1,5 +1,5 @@
-#include "application/Application.h"
-#include "application/EntryPoint.h"
+#include "application/application.h"
+#include "application/entry_point.h"
 
 void Rainy::ImGuiLayer::MenuBar()
 {}

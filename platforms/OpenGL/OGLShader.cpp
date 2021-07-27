@@ -1,7 +1,7 @@
 
-#include "core/Log.h"
+#include "core/log.h"
 #include "OGLShader.h"
-#include "render/Shader.h"
+#include "render/shader.h"
 
 namespace Rainy {
 

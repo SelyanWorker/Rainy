@@ -1,7 +1,7 @@
 #pragma once
 
-#include "core/Core.h"
-#include "render/Texture2D.h"
+#include "core/core.h"
+#include "render/texture_2d.h"
 
 #include <glad/glad.h>
 

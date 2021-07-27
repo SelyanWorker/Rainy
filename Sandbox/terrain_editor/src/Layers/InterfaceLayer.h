@@ -1,9 +1,9 @@
 #pragma once
 
-#include "core/Time.h"
-#include "core/Input.h"
-#include "core/KeyCodes.h"
-#include "core/Time.h"
+#include "core/time.h"
+#include "core/input.h"
+#include "core/key_codes.h"
+#include "core/time.h"
 
 #include "imgui.h"
 #include "imgui_internal.h"

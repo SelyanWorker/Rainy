@@ -1,7 +1,7 @@
 #pragma once
 
-#include "core/Core.h"
-#include "render/FrameBuffer.h"
+#include "core/core.h"
+#include "render/frame_buffer.h"
 
 #include "OGLTexture2D.h"
 

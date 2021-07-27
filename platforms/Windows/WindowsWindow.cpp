@@ -2,10 +2,10 @@
 #include "glad/glad.h"
 
 #include "WindowsWindow.h"
-#include "core/Log.h"
-#include "event/WindowEvents.h"
-#include "event/KeyEvents.h"
-#include "event/MouseEvent.h"
+#include "core/log.h"
+#include "event/window_events.h"
+#include "event/key_events.h"
+#include "event/mouse_event.h"
 
 //extern "C" {
 //	_declspec(dllexport) DWORD NvOptimusEnablement = 0x00000001;

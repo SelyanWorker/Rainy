@@ -1,6 +1,6 @@
 
 #include "OGLDebug.h"
-#include "core/Log.h"
+#include "core/log.h"
 
 #include <string>
 

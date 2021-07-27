@@ -1,4 +1,4 @@
-#include "core/Time.h"
+#include "core/time.h"
 
 #include "GLFW/glfw3.h"
 

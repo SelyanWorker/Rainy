@@ -1,6 +1,6 @@
 #pragma once
 
-#include "utils/Image.h"
+#include "utils/image.h"
 
 namespace Rainy {
 

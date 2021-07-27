@@ -1,5 +1,5 @@
-#include "render/Renderer.h"
-#include "render/Buffer.h"
+#include "render/renderer.h"
+#include "render/buffer.h"
 
 #include <glad/glad.h>
 

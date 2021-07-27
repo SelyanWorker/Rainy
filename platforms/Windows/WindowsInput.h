@@ -1,6 +1,6 @@
 #pragma once
 
-#include "core/Input.h"
+#include "core/input.h"
 #include "WindowsWindow.h"
 
 namespace Rainy {

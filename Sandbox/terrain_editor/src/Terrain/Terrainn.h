@@ -1,14 +1,14 @@
 #pragma once
 
-#include "core/Core.h"
-#include "render/Buffer.h"
-#include "render/VertexArray.h"
-#include "render/Shader.h"
-#include "render/ShaderLibrary.h"
-#include "render/Texture2D.h"
-#include "utils/Image.h"
+#include "core/core.h"
+#include "render/buffer.h"
+#include "render/vertex_array.h"
+#include "render/shader.h"
+#include "render/shader_library.h"
+#include "render/texture_2d.h"
+#include "utils/image.h"
 
-#include "core/Entity.h"
+#include "core/entity.h"
 
 namespace te
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "math/Math.h"
+#include "math/math.h"
 #include "Terrainn.h"
 #include "BrushT.h"
 
