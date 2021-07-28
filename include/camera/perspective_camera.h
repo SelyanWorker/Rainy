@@ -1,7 +1,7 @@
 #pragma once
 
 #include "core/core.h"
-#include "render/camera.h"
+#include "camera.h"
 
 namespace Rainy {
 

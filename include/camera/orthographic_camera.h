@@ -1,6 +1,6 @@
 #pragma once
 
-#include "render/camera.h"
+#include "camera.h"
 
 // orthographic - ve.y strong word
 
