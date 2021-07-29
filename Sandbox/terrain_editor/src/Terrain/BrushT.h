@@ -25,7 +25,7 @@ namespace te
 
         float GetFalloffFactor(float distance) const;
 
-        void SetFalloffFunction(FalloffFuction fallofffunctor);
+        void SetFalloffFunction(FalloffFuction falloffFunctor);
 
     public:
         float size{ 1 };

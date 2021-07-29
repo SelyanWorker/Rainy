@@ -14,7 +14,7 @@ namespace Rainy
                           float farPoint,
                           Vector3f position = { 0, 0, 0 },
                           Vector3f rotation = { 0, 0, 0 },
-                          float roationSpeed = 1,
+                          float rotationSpeed = 1,
                           float moveSpeed = 1);
 
         ~PerspectiveCamera() = default;
@@ -37,7 +37,7 @@ namespace Rainy
 
         void UnFreeze();
 
-        bool IsFreezed() const;
+        bool IsFrozen() const;
 
         void RecreateProjectionMatrix(float aspectRation,
                                       float fov,

@@ -39,13 +39,11 @@ namespace Rainy
     {
         GLFWwindow *glfwWindow =
             static_cast<GLFWwindow *>(Application::Get()->GetWindow()->GetNativeWindow());
-        double xpos;
-        double ypos;
-        glfwGetCursorPos(glfwWindow, &xpos, &ypos);
-        int winxpos;
-        int winypos;
-        glfwGetWindowPos(glfwWindow, &winxpos, &winypos);
-        return { xpos + winxpos, ypos + winypos };
+        double xPos, yPos;
+        glfwGetCursorPos(glfwWindow, &xPos, &yPos);
+        int winXPos, winYPos;
+        glfwGetWindowPos(glfwWindow, &winXPos, &winYPos);
+        return { xPos + winXPos, yPos + winYPos };
     }
 
 }

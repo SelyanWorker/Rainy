@@ -7,14 +7,14 @@ namespace Rainy
     class RAINY_API KeyPressEvent : public Event
     {
     public:
-        KeyPressEvent(unsigned KeyId) : m_KeyId(KeyId) {}
+        KeyPressEvent(unsigned keyId) : m_keyId(keyId) {}
         ~KeyPressEvent() = default;
         EventType GetType() { return EventType::KeyPressed; }
         static EventType GetStaticType() { return EventType::KeyPressed; }
-        unsigned GetKeyCode() const { return m_KeyId; }
+        unsigned GetKeyCode() const { return m_keyId; }
 
     private:
-        unsigned m_KeyId;
+        unsigned m_keyId;
     };
 
     class RAINY_API KeyReleaseEvent : public Event
@@ -47,13 +47,13 @@ namespace Rainy
     {
     public:
         KeyRepeatEvent(unsigned KeyId, unsigned count)
-            :m_KeyId(KeyId), m_count(count)
+            :m_keyId(KeyId), m_count(count)
         {}
         ~KeyRepeatEvent() = default;
         EventType GetType() { return EventType::KeyRepeat; }
         static EventType GetStaticType() { return EventType::KeyRepeat; }
     private:
-        unsigned m_KeyId;
+        unsigned m_keyId;
         unsigned m_count;
     };*/
 }

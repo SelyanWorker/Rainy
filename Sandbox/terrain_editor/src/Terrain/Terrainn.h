@@ -36,8 +36,8 @@ namespace te
 
     struct TerrainSection
     {
-        Vector2f Position;          // left buttom vertex position
-        Vector2f TexturePosition;   // left buttom vertex texture position
+        Vector2f Position;          // left button vertex position
+        Vector2f TexturePosition;   // left button vertex texture position
     };
 
     class TerrainArea

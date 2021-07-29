@@ -7,6 +7,7 @@
 #include "imgui.h"
 #include "imgui_internal.h"
 
+#include "TerrainLayer.h"
 #include "../Terrain/BrushT.h"
 #include "../Terrain/Terrainn.h"
 #include "../Terrain/Tools.h"
@@ -290,7 +291,7 @@ private:
         ImGui::Checkbox("Draw terrain grid", &DRAW_TERRAIN_GRID);
         ImGui::Checkbox("Draw terrain normals", &DRAW_TERRAIN_NORMALS);
 
-        ImGui::LabelText("", "Camera preferens: ");
+        ImGui::LabelText("", "Camera preferences: ");
         ImGui::SliderFloat("Move speed", &CAM_MOVE_SPEED, MIN_CAM_MOVE_SPEED, MAX_CAM_MOVE_SPEED);
         ImGui::SliderFloat("Rotate speed",
                            &CAM_ROTATE_SPEED,

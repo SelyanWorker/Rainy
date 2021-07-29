@@ -32,8 +32,6 @@ namespace Rainy
         void *GetColorData(uint32_t number) override;
 
     private:
-        bool m_binded;
-
         GLsizei m_width;
         GLsizei m_height;
 

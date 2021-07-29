@@ -25,8 +25,7 @@ namespace Rainy
     }
 
     OGLFrameBuffer::OGLFrameBuffer(std::initializer_list<Texture2D *> colorTextures)
-      : m_binded(false),
-        m_index(0),
+      : m_index(0),
         m_viewportData(new GLint[4])
     {
         for (auto texturePtr : colorTextures)

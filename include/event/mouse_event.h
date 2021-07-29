@@ -35,34 +35,34 @@ namespace Rainy
     class RAINY_API MouseMoveEvent : public Event
     {
     public:
-        MouseMoveEvent(float xpos, float ypos) : m_xpos(xpos), m_ypos(ypos) {}
+        MouseMoveEvent(float xPos, float yPos) : m_xPos(xPos), m_yPos(yPos) {}
         ~MouseMoveEvent() = default;
 
         static EventType GetStaticType() { return EventType::MouseMoved; }
         EventType GetType() { return EventType::MouseMoved; }
 
-        float GetX() const { return m_xpos; }
-        float GetY() const { return m_ypos; }
+        float GetX() const { return m_xPos; }
+        float GetY() const { return m_yPos; }
 
     private:
-        float m_xpos;
-        float m_ypos;
+        float m_xPos;
+        float m_yPos;
     };
 
     class RAINY_API MouseScrollEvent : public Event
     {
     public:
-        MouseScrollEvent(float xpos, float ypos) : m_xoffset(xpos), m_yoffset(ypos) {}
+        MouseScrollEvent(float xPos, float yPos) : m_xOffset(xPos), m_yOffset(yPos) {}
         ~MouseScrollEvent() = default;
 
         static EventType GetStaticType() { return EventType::MouseScroll; }
         EventType GetType() { return EventType::MouseScroll; }
 
-        float GetX() const { return m_xoffset; }
-        float GeTy() const { return m_yoffset; }
+        float GetX() const { return m_xOffset; }
+        float GeTy() const { return m_yOffset; }
 
     private:
-        float m_xoffset;
-        float m_yoffset;
+        float m_xOffset;
+        float m_yOffset;
     };
 }

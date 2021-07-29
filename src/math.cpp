@@ -129,11 +129,11 @@ namespace Rainy
 
         float radAngle = ToRadian(fov / 2.f);
         float tanRes = tanf(radAngle);
-        float frustrumLength = farPoint - nearPoint;
+        float frustumLength = farPoint - nearPoint;
         matrix[0][0] = (1.f / (tanRes * ar));
         matrix[1][1] = (1.f / tanRes);
-        matrix[2][2] = -(farPoint + nearPoint) / frustrumLength;
-        matrix[2][3] = -(2 * farPoint * nearPoint) / frustrumLength;
+        matrix[2][2] = -(farPoint + nearPoint) / frustumLength;
+        matrix[2][3] = -(2 * farPoint * nearPoint) / frustumLength;
         matrix[3][2] = -1;
         matrix[3][3] = 0;
 

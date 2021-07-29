@@ -137,7 +137,7 @@ namespace Rainy
 
     void PerspectiveCamera::UnFreeze() { m_freeze = false; }
 
-    bool PerspectiveCamera::IsFreezed() const { return m_freeze; }
+    bool PerspectiveCamera::IsFrozen() const { return m_freeze; }
 
     void PerspectiveCamera::RecreateProjectionMatrix(float aspectRation,
                                                      float fov,

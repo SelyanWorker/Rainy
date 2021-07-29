@@ -37,12 +37,12 @@ namespace te
             m_interPoint(interPoint),
             m_brush(brush)
         {
-            TerrainArea *execut =
+            TerrainArea *execute =
                 m_terrain->GetArea({ m_interPoint.x, m_interPoint.z }, m_brush.size);
-            TerrainArea *cancel = execut->GetCopy();
-            Rainy::AABB2Di aabb{ { 0, 0 }, { int32_t(execut->Width), int32_t(execut->Height) } };
+            TerrainArea *cancel = execute->GetCopy();
+            Rainy::AABB2Di aabb{ { 0, 0 }, { int32_t(execute->Width), int32_t(execute->Height) } };
 
-            m_areasToExecute.push_back({ execut, { aabb } });
+            m_areasToExecute.push_back({ execute, { aabb } });
             m_areasToCancel.push_back({ cancel, { aabb } });
 
             m_areasToCancel.reserve(2000);
@@ -153,10 +153,10 @@ namespace te
         std::vector<AreaParts> m_areasToCancel;
     };
 
-    class ScupltToolCommand : public BasicToolCommand
+    class SculptToolCommand : public BasicToolCommand
     {
     public:
-        ScupltToolCommand(Terrain *terrain, Vector3f interPoint, Brush brush, float strength)
+        SculptToolCommand(Terrain *terrain, Vector3f interPoint, Brush brush, float strength)
           : BasicToolCommand(terrain, interPoint, brush),
             m_strength(strength),
             m_firstExecute(true)
@@ -298,7 +298,7 @@ namespace te
             strength_mod = std::clamp<float>(strength_mod, MIN_STRENGTH_MOD, 1.f);
 
             BasicToolCommand *sculptCommand =
-                new ScupltToolCommand(m_terrain, interPoint, brush, strength * strength_mod);
+                new SculptToolCommand(m_terrain, interPoint, brush, strength * strength_mod);
 
             static uint32_t mergeCount = 0;
             sculptCommand->Execute();

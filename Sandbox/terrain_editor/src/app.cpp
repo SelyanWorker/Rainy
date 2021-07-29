@@ -36,7 +36,7 @@ void Rainy::ImGuiLayer::MenuBar()
 
             /*if (ImGui::MenuItem("Save", "", false))
             {
-                RN_APP_INFO("Save menu buttom");
+                RN_APP_INFO("Save menu button");
             }
 
             if (ImGui::MenuItem("Save as ...", "", false))

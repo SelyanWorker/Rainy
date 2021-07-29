@@ -60,32 +60,32 @@ namespace te
             heightMap->GetWidth() <= TERRAIN_RES && heightMap->GetWidth() <= TERRAIN_RES)
         {
             size_t halfTerrainRes = TERRAIN_RES / 2;
-            size_t xoff = halfTerrainRes - heightMap->GetWidth() / 2;
-            size_t yoff = halfTerrainRes - heightMap->GetHeight() / 2;
+            size_t xOff = halfTerrainRes - heightMap->GetWidth() / 2;
+            size_t yOff = halfTerrainRes - heightMap->GetHeight() / 2;
             const uint8_t *pixels = heightMap->GetData();
             for (size_t y = 0; y < heightMap->GetHeight(); y++)
             {
                 for (size_t x = 0; x < heightMap->GetWidth(); x++)
                 {
                     float height = float(pixels[y * heightMap->GetWidth() + x]) / 255.f;
-                    m_heights[(y + yoff) * TERRAIN_RES + (x + xoff)] = height * heightMod;
+                    m_heights[(y + yOff) * TERRAIN_RES + (x + xOff)] = height * heightMod;
                 }
             }
         }
 
         float columnsCount = float(static_cast<uint32_t>(columns));
         float rowsCount = float(static_cast<uint32_t>(rows));
-        float fhalfComunsCount = columnsCount / 2;
-        float fhalfRowsCount = rowsCount / 2;
+        float halfColumnsCount = columnsCount / 2;
+        float halfRowsCount = rowsCount / 2;
 
-        float posOffsetX = -WORLD_SECTION_SIZE * fhalfComunsCount;
-        float posOffsetY = -WORLD_SECTION_SIZE * fhalfRowsCount;
+        float posOffsetX = -WORLD_SECTION_SIZE * halfColumnsCount;
+        float posOffsetY = -WORLD_SECTION_SIZE * halfRowsCount;
 
-        float texOffsetU = 0.5f - TEX_SECTION_SIZE * fhalfComunsCount;
-        float texOffsetV = 0.5f - TEX_SECTION_SIZE * fhalfRowsCount;
+        float texOffsetU = 0.5f - TEX_SECTION_SIZE * halfColumnsCount;
+        float texOffsetV = 0.5f - TEX_SECTION_SIZE * halfRowsCount;
 
-        uint32_t sectionMapOffsetX = SECTION_TERRAIN_SIZE / 2 - fhalfComunsCount;
-        uint32_t sectionMapOffsetY = SECTION_TERRAIN_SIZE / 2 - fhalfRowsCount;
+        uint32_t sectionMapOffsetX = SECTION_TERRAIN_SIZE / 2 - halfColumnsCount;
+        uint32_t sectionMapOffsetY = SECTION_TERRAIN_SIZE / 2 - halfRowsCount;
         for (float y = 0; y < rowsCount; y++)
         {
             for (float x = 0; x < columnsCount; x++)
@@ -241,21 +241,21 @@ namespace te
         if (GetSection(point) != nullptr)
             return;
 
-        std::array<Vector2f, 4> adjacentsPoints = {
+        std::array<Vector2f, 4> adjacentPoints = {
             Vector2f{ point.x, point.y - WORLD_SECTION_SIZE },
             Vector2f{ point.x, point.y + WORLD_SECTION_SIZE },
             Vector2f{ point.x - WORLD_SECTION_SIZE, point.y },
             Vector2f{ point.x + WORLD_SECTION_SIZE, point.y }
         };
 
-        bool hasBottom = GetSection(adjacentsPoints[0]) == nullptr;
-        bool hasTop = GetSection(adjacentsPoints[1]) == nullptr;
-        bool hasLeft = GetSection(adjacentsPoints[2]) == nullptr;
-        bool hasRight = GetSection(adjacentsPoints[3]) == nullptr;
+        bool hasBottom = GetSection(adjacentPoints[0]) == nullptr;
+        bool hasTop = GetSection(adjacentPoints[1]) == nullptr;
+        bool hasLeft = GetSection(adjacentPoints[2]) == nullptr;
+        bool hasRight = GetSection(adjacentPoints[3]) == nullptr;
 
-        if (GetSection(adjacentsPoints[0]) == nullptr &&
-            GetSection(adjacentsPoints[1]) == nullptr &&
-            GetSection(adjacentsPoints[2]) == nullptr && GetSection(adjacentsPoints[3]) == nullptr)
+        if (GetSection(adjacentPoints[0]) == nullptr &&
+            GetSection(adjacentPoints[1]) == nullptr &&
+            GetSection(adjacentPoints[2]) == nullptr && GetSection(adjacentPoints[3]) == nullptr)
             return;
 
         uint32_t prevToDrawCount = m_sectionsToDraw.size();
@@ -673,8 +673,8 @@ namespace te
         RN_ASSERT(heightCoord.x >= 0, "vertexXPos < 0");
         RN_ASSERT(heightCoord.y >= 0, "vertexZPos < 0");
 
-        RN_ASSERT(heightCoord.x < (TERRAIN_RES - 1), "vertexXPosi > HEIGHT_MAP_RES");
-        RN_ASSERT(heightCoord.y < (TERRAIN_RES - 1), "vertexZPosi > HEIGHT_MAP_RES");
+        RN_ASSERT(heightCoord.x < (TERRAIN_RES - 1), "vertexXPosI > HEIGHT_MAP_RES");
+        RN_ASSERT(heightCoord.y < (TERRAIN_RES - 1), "vertexZPosI > HEIGHT_MAP_RES");
 
         Vector3f v0 = { 0, m_heights[heightCoord.y * TERRAIN_RES + heightCoord.x], 0 };
         Vector3f v1 = { 0,
@@ -684,10 +684,10 @@ namespace te
                         m_heights[heightCoord.y * TERRAIN_RES + (heightCoord.x + 1)],
                         0 };
 
-        float vertexXPosf = float(heightCoord.x) * WORLD_PART_SIZE;
-        float vertexZPosf = float(heightCoord.y) * WORLD_PART_SIZE;
+        float vertexXPosFloat = float(heightCoord.x) * WORLD_PART_SIZE;
+        float vertexZPosFloat = float(heightCoord.y) * WORLD_PART_SIZE;
 
-        Vector2f localPosition = pointWithIndent - Vector2f{ vertexXPosf, vertexZPosf };
+        Vector2f localPosition = pointWithIndent - Vector2f{ vertexXPosFloat, vertexZPosFloat };
 
         if (localPosition.x > (WORLD_PART_SIZE - (localPosition.y)))
             v0 = { WORLD_PART_SIZE,
@@ -729,16 +729,16 @@ namespace te
         /*RN_CORE_TRACE("RecCount: {0}", recursion_count);*/
         float half = start + (end - start) / 2;
 
-        Vector3f rayHalfLegthPoint = rayStartPoint + rayDirection * half;
+        Vector3f rayHalfLengthPoint = rayStartPoint + rayDirection * half;
 
         if (recursionCount <= 0)
         {
             Vector3f surfacePoint;
-            GetSurfacePoint(rayHalfLegthPoint.x, rayHalfLegthPoint.z, surfacePoint);
+            GetSurfacePoint(rayHalfLengthPoint.x, rayHalfLengthPoint.z, surfacePoint);
             return surfacePoint;
         }
 
-        if (StartAboveEndBelow(rayStartPoint + rayDirection * start, rayHalfLegthPoint))
+        if (StartAboveEndBelow(rayStartPoint + rayDirection * start, rayHalfLengthPoint))
             return BinarySearch(rayStartPoint, rayDirection, start, half, recursionCount - 1);
         else
             return BinarySearch(rayStartPoint, rayDirection, half, end, recursionCount - 1);

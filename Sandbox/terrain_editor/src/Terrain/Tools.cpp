@@ -82,7 +82,7 @@ namespace te
     //
     //}
 
-    void ScupltToolCommand::ModifyPositions(TerrainArea *area, Vector3f interPoint)
+    void SculptToolCommand::ModifyPositions(TerrainArea *area, Vector3f interPoint)
     {
         Vector2f xz_intersection_point{ interPoint.x, interPoint.z };
 
@@ -93,7 +93,7 @@ namespace te
             Vector3f &vertex_position = area->Positions[dataIndex];
             Vector2f xz_position{ vertex_position.x, vertex_position.z };
 
-            float distance = (xz_position - xz_intersection_point).lenght();
+            float distance = (xz_position - xz_intersection_point).length();
 
             if (distance <= m_brush.size)
             {
@@ -144,7 +144,7 @@ namespace te
 
                 Vector2f xzPosition{ position.x, position.z };
 
-                float distance = (xzPosition - xzIntersectionPoint).lenght();
+                float distance = (xzPosition - xzIntersectionPoint).length();
 
                 float height_increment = (position.y - (heightSum / count)) * m_strength *
                                          m_brush.GetFalloffFactor(distance);

@@ -13,7 +13,7 @@ namespace Rainy
 
     Application *Application::m_application = nullptr;
 
-    ImGuiLayer *imguilayer;
+    ImGuiLayer *imguiLayer;
 
     Application::Application()
     {
@@ -29,8 +29,8 @@ namespace Rainy
         for (uint16_t i = 0; i < 512; i++)
             KeyStates[i] = 0;
 
-        imguilayer = new ImGuiLayer();
-        PushLayer(imguilayer);
+        imguiLayer = new ImGuiLayer();
+        PushLayer(imguiLayer);
     }
 
     Application::~Application() { ShutDown(); }
@@ -62,12 +62,12 @@ namespace Rainy
                 layer->OnUpdate();
             }
 
-            imguilayer->Begin();
+            imguiLayer->Begin();
             for (auto layer : m_layerStack)
             {
                 layer->OnImGuiRender();
             }
-            imguilayer->End();
+            imguiLayer->End();
 
             m_window->SwapBuffers();
 
@@ -90,7 +90,7 @@ namespace Rainy
 
     void Application::OnEvent(Event &e)
     {
-        EventDispetcher dispatcher(e);
+        EventDispatcher dispatcher(e);
         dispatcher.Dispatch<WindowCloseEvent>(RN_BIND_MEMBER_FUN(Application::OnWindowClose));
 
         for (auto layer : m_layerStack)

@@ -67,13 +67,13 @@ public:
     {
         Rainy::Texture2D *colorTexture0 = Rainy::Texture2D::Create();
         colorTexture0->TextureData(m_contentAreaWidth,
-                                   m_contentAreatHeight,
+                                   m_contentAreaHeight,
                                    4,
                                    Rainy::TextureDataType::UNSIGNED_BYTE,
                                    nullptr);
         Rainy::Texture2D *colorTexture1 = Rainy::Texture2D::Create();
         colorTexture1->TextureData(m_contentAreaWidth,
-                                   m_contentAreatHeight,
+                                   m_contentAreaHeight,
                                    3,
                                    Rainy::TextureDataType::FLOAT,
                                    nullptr);
@@ -84,8 +84,8 @@ public:
         m_pointsShader = Rainy::ShaderLibrary::CreateShader(POINTS_SHADER_PTR.get());
         m_lightBoxShader = Rainy::ShaderLibrary::CreateShader(BASE_SHADER_PTR.get());
 
-        float aspectRation = float(m_contentAreaWidth) / m_contentAreatHeight;
-        m_perspCamera = new Rainy::PerspectiveCamera(aspectRation,
+        float aspectRation = float(m_contentAreaWidth) / m_contentAreaHeight;
+        m_perspectiveCamera = new Rainy::PerspectiveCamera(aspectRation,
                                                      FOV,
                                                      NEAR_PLANE,
                                                      FAR_PLANE,
@@ -111,7 +111,7 @@ public:
         // terrain->SetShader(te::Terrain::terrainShader);
         // terrain->SetScale(0.1f);
 
-        // tool and brush setuo
+        // tool and brush setup
         toolManager = new te::ToolManager(terrain);
         brush = new te::Brush(10.f, 1.f);
 
@@ -122,20 +122,6 @@ public:
         ImGui::SetNextWindowSize(ImVec2{ 1024, 768 });
         ImGui::SetNextWindowPos(ImVec2{ 0, 19 });
 
-        // test
-        /*Rainy::Image* testImg = Rainy::Image::Create("res/textures/nm.jpg");
-        Rainy::Texture2D* testTexture = Rainy::Texture2D::Create();
-        testTexture->TextureData(testImg);
-        Rainy::Image* testImg1 = Rainy::Image::Create(
-            reinterpret_cast<uint8_t*>(testTexture->GetTextureData()),
-            3, testTexture->GetWidth(), testTexture->GetHeight()
-        );
-        testImg1->SaveImage("res/textures/nmout.jpg", Rainy::ImageTypes::RN_JPEG);
-
-        delete testImg1;
-        delete testTexture;
-        delete testImg;*/
-        // test
     }
 
     ~TerrainLayer() {}
@@ -146,11 +132,11 @@ public:
     {
         using Rainy::Input;
 
-        m_perspCamera->m_rotationSpeed = CAM_ROTATE_SPEED;
-        m_perspCamera->m_moveSpeed = CAM_MOVE_SPEED;
+        m_perspectiveCamera->m_rotationSpeed = CAM_ROTATE_SPEED;
+        m_perspectiveCamera->m_moveSpeed = CAM_MOVE_SPEED;
 
-        static bool pButtomRelease = true;
-        if (pButtomRelease && Input::IsKeyPressed(Rainy::RN_KEY_P))
+        static bool pButtonRelease = true;
+        if (pButtonRelease && Input::IsKeyPressed(Rainy::RN_KEY_P))
         {
             static bool polyModeEnable = false;
             polyModeEnable = !polyModeEnable;
@@ -158,11 +144,11 @@ public:
                 Rainy::EnablePolygonMode();
             else
                 Rainy::DisablePolygonMode();
-            pButtomRelease = false;
+            pButtonRelease = false;
         }
         else if (Input::IsKeyReleased(Rainy::RN_KEY_P))
         {
-            pButtomRelease = true;
+            pButtonRelease = true;
         }
 
         if (Input::IsKeyPressed(Rainy::RN_KEY_F))
@@ -170,49 +156,49 @@ public:
             terrain->Flat();
         }
 
-        static bool uButtomRelease = true;
-        if (uButtomRelease && Input::IsKeyPressed(Rainy::RN_KEY_U))
+        static bool uButtonRelease = true;
+        if (uButtonRelease && Input::IsKeyPressed(Rainy::RN_KEY_U))
         {
             toolManager->Undo();
-            uButtomRelease = false;
+            uButtonRelease = false;
         }
         else if (Input::IsKeyReleased(Rainy::RN_KEY_U))
-            uButtomRelease = true;
+            uButtonRelease = true;
 
-        static bool rButtomRelease = true;
-        if (rButtomRelease && Input::IsKeyPressed(Rainy::RN_KEY_R))
+        static bool rButtonRelease = true;
+        if (rButtonRelease && Input::IsKeyPressed(Rainy::RN_KEY_R))
         {
             toolManager->Redo();
-            rButtomRelease = false;
+            rButtonRelease = false;
         }
         else if (Input::IsKeyReleased(Rainy::RN_KEY_R))
-            rButtomRelease = true;
+            rButtonRelease = true;
 
         if (m_focused && Input::IsKeyPressed(Rainy::RN_KEY_LEFT_ALT))
         {
             ImGui::SetMouseCursor(ImGuiMouseCursor_None);
             Rainy::Application::Get()->DisableCursor();
-            m_perspCamera->UnFreeze();
+            m_perspectiveCamera->UnFreeze();
         }
         else
         {
             ImGui::SetMouseCursor(ImGuiMouseCursor_Arrow);
             Rainy::Application::Get()->EnableCursor();
-            m_perspCamera->Freeze();
+            m_perspectiveCamera->Freeze();
         }
-        m_perspCamera->OnUpdate();
+        m_perspectiveCamera->OnUpdate();
 
         Vector3f rayDir = ViewportSpaceToWorldSpace(m_windowCursorPos,
-                                                    m_perspCamera->GetProjectionMatrix(),
-                                                    m_perspCamera->GetViewMatrix(),
+                                                    m_perspectiveCamera->GetProjectionMatrix(),
+                                                    m_perspectiveCamera->GetViewMatrix(),
                                                     m_contentAreaWidth,
-                                                    m_contentAreatHeight);
+                                                    m_contentAreaHeight);
         rayDir.normalize();
 
         constexpr float RAY_DISTANCE = 100000.f;
-        bool intersaction = terrain->RayIntersection(m_interPoint,
+        bool intersection = terrain->RayIntersection(m_interPoint,
                                                      rayDir,
-                                                     m_perspCamera->GetPosition(),
+                                                     m_perspectiveCamera->GetPosition(),
                                                      RAY_DISTANCE);
 
         if (m_focused && Input::IsMouseKeyPressed(Rainy::RN_MOUSE::BUTTON_1))
@@ -225,12 +211,12 @@ public:
             // if ((currentTime.GetMilli() - prevTime) >= DELAY)
             if (true)
             {
-                // RN_APP_INFO("Intersection {0}, Point: {1}", intersaction, m_interPoint.str());
+                // RN_APP_INFO("Intersection {0}, Point: {1}", intersection, m_interPoint.str());
 
                 if (toolType == te::ToolTypes::ADD_SECTION)
                     terrain->AddSection({ m_interPoint.x, m_interPoint.z });
 
-                if (intersaction)
+                if (intersection)
                 {
                     if (toolType == te::ToolTypes::DELETE_SECTION)
                         terrain->RemoveSection({ m_interPoint.x, m_interPoint.z });
@@ -316,9 +302,8 @@ public:
         m_frameBuffer->Bind();
         Rainy::Clear();
 
-        Matrix4f projM = m_perspCamera->GetProjectionMatrix();
-        Matrix4f viewM = m_perspCamera->GetViewMatrix();
-        // RN_APP_INFO("ndcIntePoint : {0}", ndcIntePoint.str());
+        Matrix4f projM = m_perspectiveCamera->GetProjectionMatrix();
+        Matrix4f viewM = m_perspectiveCamera->GetViewMatrix();
 
         m_terrainShader->Bind();
         m_terrainShader->SetUniform("projectionMatrix", projM);
@@ -344,17 +329,6 @@ public:
             terrain->Draw(m_terrainNormalsShader);
             Rainy::SetLineWidth(1.f);
         }
-
-        /*float prevPointSize = Rainy::GetPointSize();
-        Rainy::SetPointSize(3.f);
-        m_pointsShader->Bind();
-        m_pointsShader->SetUniform("projectionMatrix", m_perspCamera->GetProjectionMatrix());
-        m_pointsShader->SetUniform("viewMatrix", m_perspCamera->GetViewMatrix());
-        m_pointsShader->SetUniform("pointColor", Rainy::Vector4f(1.f, 0, 0, 1));
-
-        Rainy::DrawVertexArray(Rainy::RN_POINTS, m_interPointsVertexArray);
-        Rainy::SetPointSize(prevPointSize)*/
-        ;
 
         m_frameBuffer->UnBind();
     }
@@ -386,14 +360,13 @@ public:
                 currentWinPos.x, currentWinPos.y, cursorPosition.first, cursorPosition.second);
     */
         if (windowWidth != m_contentAreaWidth ||
-            (windowHeight - titleHeight) != m_contentAreatHeight)
+            (windowHeight - titleHeight) != m_contentAreaHeight)
         {
             m_contentAreaWidth = windowWidth;
-            m_contentAreatHeight = windowHeight - titleHeight;
+            m_contentAreaHeight = windowHeight - titleHeight;
 
-            m_frameBuffer->SetSize(m_contentAreaWidth, m_contentAreatHeight);
-            m_perspCamera->RecreateProjectionMatrix(float(m_contentAreaWidth) /
-                                                        m_contentAreatHeight,
+            m_frameBuffer->SetSize(m_contentAreaWidth, m_contentAreaHeight);
+            m_perspectiveCamera->RecreateProjectionMatrix(float(m_contentAreaWidth) / m_contentAreaHeight,
                                                     FOV,
                                                     NEAR_PLANE,
                                                     FAR_PLANE);
@@ -442,7 +415,7 @@ public:
 
 private:
     uint32_t m_contentAreaWidth = 1920;
-    uint32_t m_contentAreatHeight = 1080;
+    uint32_t m_contentAreaHeight = 1080;
 
     Vector2f m_windowCursorPos;
     bool m_focused;
@@ -455,7 +428,7 @@ private:
     Rainy::FrameBuffer *m_frameBuffer;
     Rainy::Shader *m_lightBoxShader;
 
-    Rainy::PerspectiveCamera *m_perspCamera;
+    Rainy::PerspectiveCamera *m_perspectiveCamera;
 
     Rainy::Shader *m_terrainShader;
     Rainy::Shader *m_terrainNormalsShader;

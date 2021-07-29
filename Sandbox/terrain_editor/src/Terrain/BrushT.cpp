@@ -25,9 +25,9 @@ namespace te
     {
     }
 
-    void Brush::SetFalloffFunction(FalloffFuction falloffFunction)
+    void Brush::SetFalloffFunction(FalloffFuction falloffFunctor)
     {
-        this->falloffFunction = falloffFunction;
+        this->falloffFunction = falloffFunctor;
     }
 
     float Brush::GetFalloffFactor(float distance) const
@@ -62,9 +62,6 @@ namespace te
 
         float radians = distance_factor * (1.45f);
 
-        // ��� ���������� �������, ������� - ��� ������ ��������� � ������ ���������,
-        // ���� ������ �������, �� �������� � ��������, ��� ��� cos(x^2) ������ 2.5,
-        // � ������ ��� �������� �������� 1.78 (�������� ��� cos(x) - 3.14..)
         float factor = (std::cos(radians * radians * radians) + 1) / 2;
 
         return factor;

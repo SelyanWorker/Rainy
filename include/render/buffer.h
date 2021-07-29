@@ -62,11 +62,11 @@ namespace Rainy
         BufferLayout() = default;
 
         BufferLayout(std::initializer_list<BufferElement> &elements, uint64_t vertexCount)
-          : m_elemets(elements),
+          : m_elements(elements),
             m_stride(0),
             m_vertexCount(vertexCount)
         {
-            for (auto &element : m_elemets)
+            for (auto &element : m_elements)
             {
                 switch (element.Type)
                 {
@@ -92,11 +92,11 @@ namespace Rainy
         uint32_t GetStride() const { return m_stride; }
         uint64_t GetVertexCount() const { return m_vertexCount; }
 
-        std::vector<BufferElement>::iterator begin() { return m_elemets.begin(); }
-        std::vector<BufferElement>::iterator end() { return m_elemets.end(); }
+        std::vector<BufferElement>::iterator begin() { return m_elements.begin(); }
+        std::vector<BufferElement>::iterator end() { return m_elements.end(); }
 
     private:
-        std::vector<BufferElement> m_elemets;
+        std::vector<BufferElement> m_elements;
         uint32_t m_stride = 0;
         uint64_t m_vertexCount = 0;
     };

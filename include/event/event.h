@@ -46,11 +46,11 @@ namespace Rainy
         bool Handled;
     };
 
-    class RAINY_API EventDispetcher
+    class RAINY_API EventDispatcher
     {
     public:
-        EventDispetcher(Event &e) : e(e) {}
-        ~EventDispetcher() = default;
+        EventDispatcher(Event &e) : e(e) {}
+        ~EventDispatcher() = default;
 
         template<typename EventT, typename FunType>
         bool Dispatch(FunType const &fun)

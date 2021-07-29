@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Math.h"
-
 #include <cmath>
 #include <iostream>
 #include <string>
@@ -25,7 +23,7 @@ namespace Rainy
 
         ~Vector2() = default;
 
-        float lenght() const { return std::sqrt(x * x + y * y); }
+        float length() const { return std::sqrt(x * x + y * y); }
 
         float lengthQuad() const { return x * x + y * y; }
 
@@ -40,9 +38,9 @@ namespace Rainy
 
         Vector2<T> &normalize()
         {
-            float m_lenght = lenght();
-            x /= m_lenght;
-            y /= m_lenght;
+            float m_length = length();
+            x /= m_length;
+            y /= m_length;
             return *this;
         }
 
@@ -136,10 +134,10 @@ namespace Rainy
 
         Vector3<T> &normalize()
         {
-            float m_lenght = length();
-            x /= m_lenght;
-            y /= m_lenght;
-            z /= m_lenght;
+            float m_length = length();
+            x /= m_length;
+            y /= m_length;
+            z /= m_length;
             return *this;
         }
 
@@ -226,7 +224,7 @@ namespace Rainy
 
         ~Vector4() = default;
 
-        float lenght() const { return std::sqrt(x * x + y * y + z * z + w * w); }
+        float length() const { return std::sqrt(x * x + y * y + z * z + w * w); }
 
         float lengthQuad() const { return x * x + y * y + z * z + w * w; }
 
@@ -243,11 +241,11 @@ namespace Rainy
 
         Vector4<T> &normalize()
         {
-            float m_lenght = lenght();
-            x /= m_lenght;
-            y /= m_lenght;
-            z /= m_lenght;
-            w /= m_lenght;
+            float m_length = length();
+            x /= m_length;
+            y /= m_length;
+            z /= m_length;
+            w /= m_length;
             return *this;
         }
 
