@@ -19,33 +19,33 @@ namespace Rainy
 
         ~PerspectiveCamera() = default;
 
-        void OnUpdate() override;
+        void onUpdate() override;
 
-        Matrix4f GetViewMatrix() const override;
+        Matrix4f getViewMatrix() const override;
 
-        Matrix4f GetProjectionMatrix() const override;
+        Matrix4f getProjectionMatrix() const override;
 
-        void SetPosition(Vector3f position) override;
+        void setPosition(Vector3f position) override;
 
-        void SetRotation(Vector3f rotation) override;
+        void setRotation(Vector3f rotation) override;
 
-        Vector3f GetPosition() const override;
+        Vector3f getPosition() const override;
 
-        Vector3f GetRotation() const override;
+        Vector3f getRotation() const override;
 
-        void Freeze();
+        void freeze();
 
-        void UnFreeze();
+        void unFreeze();
 
-        bool IsFrozen() const;
+        bool isFrozen() const;
 
-        void RecreateProjectionMatrix(float aspectRation,
+        void recreateProjectionMatrix(float aspectRation,
                                       float fov,
                                       float nearPoint,
                                       float farPoint);
 
     private:
-        Vector3f GetMoveIncrement(Vector3f direction);
+        Vector3f getMoveIncrement(Vector3f direction);
 
     public:
         float m_rotationSpeed;

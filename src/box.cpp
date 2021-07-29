@@ -50,10 +50,10 @@ namespace Rainy
         delete m_vertexBuffer;
     }
 
-    void Box::SetSize(Vector3f size) { SetScale(size); }
+    void Box::setSize(Vector3f size) { setScale(size); }
 
-    Vector3f Box::GetSize() const { return GetScale(); }
+    Vector3f Box::getSize() const { return getScale(); }
 
-    void Box::Draw() { DrawVertexArray(RenderMode::RN_TRIANGLES, m_vertexArray); }
+    void Box::draw() { DrawVertexArray(RenderMode::RN_TRIANGLES, m_vertexArray); }
 
 }

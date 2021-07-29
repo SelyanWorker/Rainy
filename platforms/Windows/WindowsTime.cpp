@@ -4,6 +4,6 @@
 
 namespace Rainy
 {
-    TimeStep TimeStep::GetTime() { return TimeStep(glfwGetTime()); }
+    TimeStep TimeStep::getTime() { return TimeStep(glfwGetTime()); }
 
 }

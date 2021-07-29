@@ -20,19 +20,19 @@ namespace Rainy
 
         ~OrthographicCamera() = default;
 
-        void OnUpdate() override;
+        void onUpdate() override;
 
-        Matrix4f GetViewMatrix() const override;
+        Matrix4f getViewMatrix() const override;
 
-        Matrix4f GetProjectionMatrix() const override;
+        Matrix4f getProjectionMatrix() const override;
 
-        void SetPosition(Vector3f position) override;
+        void setPosition(Vector3f position) override;
 
-        void SetRotation(Vector3f rotation) override;
+        void setRotation(Vector3f rotation) override;
 
-        Vector3f GetPosition() const override;
+        Vector3f getPosition() const override;
 
-        Vector3f GetRotation() const override;
+        Vector3f getRotation() const override;
 
     private:
         Vector3f m_position;

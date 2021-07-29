@@ -9,29 +9,29 @@ namespace Rainy
     class RAINY_API Input
     {
     public:
-        static bool IsKeyPressed(uint32_t KeyCode) { return m_input->IsKeyPressedImpl(KeyCode); }
-        static bool IsKeyReleased(uint32_t KeyCode) { return m_input->IsKeyReleaseImpl(KeyCode); }
-        static bool IsMouseKeyPressed(uint32_t mouseKeyCode)
+        static bool isKeyPressed(uint32_t KeyCode) { return m_input->isKeyPressedImpl(KeyCode); }
+        static bool isKeyReleased(uint32_t KeyCode) { return m_input->isKeyReleaseImpl(KeyCode); }
+        static bool isMouseKeyPressed(uint32_t mouseKeyCode)
         {
-            return m_input->IsMouseKeyPressedImpl(mouseKeyCode);
+            return m_input->isMouseKeyPressedImpl(mouseKeyCode);
         }
-        static bool IsMouseKeyReleased(uint32_t mouseKeyCode)
+        static bool isMouseKeyReleased(uint32_t mouseKeyCode)
         {
-            return m_input->IsMouseKeyReleasedImpl(mouseKeyCode);
+            return m_input->isMouseKeyReleasedImpl(mouseKeyCode);
         }
-        static std::pair<float, float> GetCursorPosition()
+        static std::pair<float, float> getCursorPosition()
         {
-            return m_input->GetCursorPositionImpl();
+            return m_input->getCursorPositionImpl();
         }
         //	static std::pair<float, float> GetMouseScroll() { return m_input->GetMouseScrollImpl();
         //}
 
     protected:
-        virtual bool IsKeyPressedImpl(uint32_t KeyCode) = 0;
-        virtual bool IsKeyReleaseImpl(uint32_t KeyCode) = 0;
-        virtual bool IsMouseKeyPressedImpl(uint32_t mouseKeyCode) = 0;
-        virtual bool IsMouseKeyReleasedImpl(uint32_t mouseKeyCode) = 0;
-        virtual std::pair<float, float> GetCursorPositionImpl() = 0;
+        virtual bool isKeyPressedImpl(uint32_t KeyCode) = 0;
+        virtual bool isKeyReleaseImpl(uint32_t KeyCode) = 0;
+        virtual bool isMouseKeyPressedImpl(uint32_t mouseKeyCode) = 0;
+        virtual bool isMouseKeyReleasedImpl(uint32_t mouseKeyCode) = 0;
+        virtual std::pair<float, float> getCursorPositionImpl() = 0;
         //	virtual std::pair<float, float> GetMouseScrollImpl() = 0;
 
     private:

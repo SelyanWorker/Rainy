@@ -8,11 +8,11 @@ namespace Rainy
     class WindowsInput : public Input
     {
     protected:
-        bool IsKeyPressedImpl(uint32_t KeyCode) override;
-        bool IsKeyReleaseImpl(uint32_t KeyCode) override;
-        bool IsMouseKeyPressedImpl(uint32_t mouseKeyCode) override;
-        bool IsMouseKeyReleasedImpl(uint32_t mouseKeyCode) override;
-        std::pair<float, float> GetCursorPositionImpl() override;
+        bool isKeyPressedImpl(uint32_t KeyCode) override;
+        bool isKeyReleaseImpl(uint32_t KeyCode) override;
+        bool isMouseKeyPressedImpl(uint32_t mouseKeyCode) override;
+        bool isMouseKeyReleasedImpl(uint32_t mouseKeyCode) override;
+        std::pair<float, float> getCursorPositionImpl() override;
         // std::pair<float, float> GetMouseScrollImpl()  override;
     };
 

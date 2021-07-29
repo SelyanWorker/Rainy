@@ -12,15 +12,15 @@ namespace Rainy
     public:
         TimeStep(const TimeStep &other) { m_seconds = other.m_seconds; }
 
-        float GetMilli() const { return m_seconds * 1000; }
+        float getMilli() const { return m_seconds * 1000; }
 
-        float GetMicro() const { return m_seconds * 1000000; }
+        float getMicro() const { return m_seconds * 1000000; }
 
-        float GetNano() const { return m_seconds * 1000000000; }
+        float getNano() const { return m_seconds * 1000000000; }
 
-        float GetSeconds() const { return m_seconds; }
+        float getSeconds() const { return m_seconds; }
 
-        static TimeStep GetTime();
+        static TimeStep getTime();
 
     private:
         float m_seconds;

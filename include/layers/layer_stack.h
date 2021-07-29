@@ -13,9 +13,9 @@ namespace Rainy
         LayerStack();
         virtual ~LayerStack();
 
-        void PushLayer(Layer *layer);
+        void pushLayer(Layer *layer);
 
-        void PopLayer();
+        void popLayer();
 
         std::vector<Layer *>::iterator begin();
         std::vector<Layer *>::iterator end();

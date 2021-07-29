@@ -12,23 +12,23 @@ namespace Rainy
         WindowsWindow(WindowProperties &prop);
         ~WindowsWindow();
 
-        uint32_t GetWidth() const override;
+        uint32_t getWidth() const override;
 
-        uint32_t GetHeight() const override;
+        uint32_t getHeight() const override;
 
-        void *GetNativeWindow() const override;
+        void *getNativeWindow() const override;
 
-        std::pair<int32_t, int32_t> GetWindowsPosition() const override;
+        std::pair<int32_t, int32_t> getWindowsPosition() const override;
 
-        void SetEventFunction(EventFunType eventFun) override;
+        void setEventFunction(EventFunType eventFun) override;
 
-        void OnUpdate() override;
+        void onUpdate() override;
 
-        void SwapBuffers() override;
+        void swapBuffers() override;
 
-        void EnableCursor() override;
+        void enableCursor() override;
 
-        void DisableCursor() override;
+        void disableCursor() override;
 
         void Init();
 

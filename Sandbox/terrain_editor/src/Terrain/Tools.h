@@ -59,26 +59,26 @@ namespace te
             auto trimmingProcess =
                 [](AABB2Di const &temp, Vector2i offset, std::vector<AABB2Di> &parts)
             {
-                if (Rainy::AABB2DZeroSpace(temp))
+                if (Rainy::aabb2dZeroSpace(temp))
                     return;
                 for (size_t j = 0; j < parts.size(); j++)
                 {
                     AABB2Di aabb = parts[j];
-                    aabb.Move(offset);
+                    aabb.move(offset);
 
                     AABB2Di overlay;
-                    if (Rainy::AABB2DOverlay(temp, aabb, overlay))
+                    if (Rainy::aabb2dOverlay(temp, aabb, overlay))
                     {
-                        auto aabbParts = Rainy::AABB2DExcludeOverlay(aabb, overlay);
+                        auto aabbParts = Rainy::aabb2dExcludeOverlay(aabb, overlay);
                         if (!aabbParts.empty())
                         {
                             AABB2Di first = aabbParts.front();
-                            first.Move(-offset);
+                            first.move(-offset);
                             parts[j] = first;
 
                             for (auto q = aabbParts.begin() + 1; q < aabbParts.end(); q++)
                             {
-                                q->Move(-offset);
+                                q->move(-offset);
                                 parts.push_back((*q));
                             }
                         }
@@ -386,7 +386,7 @@ namespace te
 
         ~SmoothTool() = default;
 
-        static ToolTypes GetType() { return ToolTypes::SMOOTH; }
+        static ToolTypes getType() { return ToolTypes::SMOOTH; }
 
     protected:
         void ModifyPositions(TerrainArea* area, Vector3f interPoint) override;

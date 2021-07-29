@@ -19,7 +19,7 @@ bool b_ShowGeneratorMenu = false;
 bool b_ShowTerrainCreationMenu = false;
 bool b_ShowUtilsMenu = false;
 
-void Rainy::ImGuiLayer::MenuBar()
+void Rainy::ImGuiLayer::menuBar()
 {
     if (ImGui::BeginMenuBar())
     {
@@ -85,13 +85,13 @@ public:
     {
         RN_APP_INFO("App run!");
         terrainLayer = new TerrainLayer();
-        PushLayer(terrainLayer);
+        pushLayer(terrainLayer);
 
         interfaceLayer = new InterfaceLayer();
-        PushLayer(interfaceLayer);
+        pushLayer(interfaceLayer);
     }
 
     ~SandboxApp() {}
 };
 
-Rainy::Application *Rainy::CreateApplication() { return new SandboxApp(); }
+Rainy::Application *Rainy::createApplication() { return new SandboxApp(); }

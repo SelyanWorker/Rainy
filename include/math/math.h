@@ -119,7 +119,7 @@ namespace Rainy
             return { y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x };
         }
 
-        Vector3<T> &Mul(T const &scalar)
+        Vector3<T> &mul(T const &scalar)
         {
             x *= scalar;
             y *= scalar;
@@ -154,7 +154,7 @@ namespace Rainy
 
         Vector2<T> getVector2() const { return { x, y }; }
 
-        Vector3<T> &operator*=(T const &scalar) { return this->Mul(scalar); }
+        Vector3<T> &operator*=(T const &scalar) { return this->mul(scalar); }
 
         Vector3<T> &operator+=(Vector3<T> const &v) { return this->add(v); }
 
@@ -225,7 +225,7 @@ namespace Rainy
 
         T dot(Vector4<T> const &v) const { return x * v.x + y * v.y + z * v.z + w * v.w; }
 
-        Vector4<T> &Mul(T const &scalar)
+        Vector4<T> &mul(T const &scalar)
         {
             x *= scalar;
             y *= scalar;
@@ -265,7 +265,7 @@ namespace Rainy
 
         Vector3<T> getVector3() const { return { x, y, z }; }
 
-        Vector4<T> &operator*=(T const &scalar) { return this->Mul(scalar); }
+        Vector4<T> &operator*=(T const &scalar) { return this->mul(scalar); }
 
         Vector4<T> &operator+=(Vector4<T> const &v) { return this->add(v); }
 
@@ -347,21 +347,21 @@ namespace Rainy
 
         ~Matrix2() { delete[] m_data; }
 
-        Matrix2<T> &Mul(float const &scalar)
+        Matrix2<T> &mul(float const &scalar)
         {
             for (uint32_t i = 0; i < 2; ++i)
                 m_data[i] *= scalar;
             return *this;
         }
 
-        Matrix2<T> &Identity()
+        Matrix2<T> &identity()
         {
             m_data[0] = { 1, 0 };
             m_data[1] = { 0, 1 };
             return *this;
         }
 
-        Matrix2<T> Transparancy()
+        Matrix2<T> transparency()
         {
             Vector2<T> v0 = m_data[0];
             Vector2<T> v1 = m_data[1];
@@ -372,7 +372,7 @@ namespace Rainy
             return *this;
         }
 
-        Matrix2<T> &Transparancy_rnm()
+        Matrix2<T> &transparency_rnm()
         {
             Vector2<T> v0 = m_data[0];
             Vector2<T> v1 = m_data[1];
@@ -380,7 +380,7 @@ namespace Rainy
             return { { v0.x, v1.x }, { v0.y, v1.y } };
         }
 
-        Matrix2<T> &Mul(Matrix2<T> const &m)
+        Matrix2<T> &mul(Matrix2<T> const &m)
         {
             Vector2<T> *new_data = new Vector2<T>[2];
 
@@ -402,7 +402,7 @@ namespace Rainy
             return *this;
         }
 
-        Vector2<T> Mul(Vector2<T> const &p_v)
+        Vector2<T> mul(Vector2<T> const &p_v)
         {
             Vector2<T> m_m;
 
@@ -417,11 +417,11 @@ namespace Rainy
             return m_m;
         }
 
-        T Det() const { return m_data[0][0] * m_data[1][1] - m_data[0][1] * m_data[1][0]; }
+        T det() const { return m_data[0][0] * m_data[1][1] - m_data[0][1] * m_data[1][0]; }
 
-        T *GetData() { return (T *)m_data; }
+        T *getData() { return (T *)m_data; }
 
-        std::string String() const { return m_data[0].str() + '\n' + m_data[1].str(); }
+        std::string toString() const { return m_data[0].str() + '\n' + m_data[1].str(); }
 
         Vector2<T> &operator[](uint32_t i) { return m_data[i]; }
 
@@ -461,14 +461,14 @@ namespace Rainy
 
         ~Matrix3() { delete[] m_data; }
 
-        Matrix3<T> &Mul(float const &scalar)
+        Matrix3<T> &mul(float const &scalar)
         {
             for (uint32_t i = 0; i < 3; ++i)
                 m_data[i] *= scalar;
             return *this;
         }
 
-        Matrix3<T> &Identity()
+        Matrix3<T> &identity()
         {
             m_data[0] = { 1, 0, 0 };
             m_data[1] = { 0, 1, 0 };
@@ -476,7 +476,7 @@ namespace Rainy
             return *this;
         }
 
-        Matrix3<T> &Transparancy()
+        Matrix3<T> &transparency()
         {
             Vector3<T> v0 = m_data[0];
             Vector3<T> v1 = m_data[1];
@@ -489,7 +489,7 @@ namespace Rainy
             return *this;
         }
 
-        Matrix3<T> Transparancy_rnm()
+        Matrix3<T> transparency_rnm()
         {
             Vector3<T> v0 = m_data[0];
             Vector3<T> v1 = m_data[1];
@@ -498,7 +498,7 @@ namespace Rainy
             return { { v0.x, v1.x, v2.x }, { v0.y, v1.y, v2.y }, { v0.z, v1.z, v2.z } };
         }
 
-        Matrix3<T> &Mul(Matrix3<T> const &m)
+        Matrix3<T> &mul(Matrix3<T> const &m)
         {
             Vector3<T> *new_data = new Vector3<T>[3];
 
@@ -520,7 +520,7 @@ namespace Rainy
             return *this;
         }
 
-        Vector3<T> Mul(Vector3<T> const &p_v)
+        Vector3<T> mul(Vector3<T> const &p_v)
         {
             Vector3<T> m_m;
 
@@ -535,7 +535,7 @@ namespace Rainy
             return m_m;
         }
 
-        T Det() const
+        T det() const
         {
             return +m_data[0][0] * m_data[1][1] * m_data[2][2] -
                    m_data[0][0] * m_data[1][2] * m_data[2][1] -
@@ -545,9 +545,9 @@ namespace Rainy
                    m_data[0][2] * m_data[1][1] * m_data[2][0];
         }
 
-        T *GetData() { return (T *)m_data; }
+        T *getData() { return (T *)m_data; }
 
-        std::string String() const
+        std::string toString() const
         {
             return m_data[0].str() + '\n' + m_data[1].str() + '\n' + m_data[2].str();
         }
@@ -593,14 +593,14 @@ namespace Rainy
 
         ~Matrix4() { delete[] m_data; }
 
-        Matrix4<T> &Mul(float const &scalar)
+        Matrix4<T> &mul(float const &scalar)
         {
             for (uint32_t i = 0; i < 4; ++i)
                 m_data[i] *= scalar;
             return *this;
         }
 
-        Matrix4<T> &Identity()
+        Matrix4<T> &identity()
         {
             m_data[0] = { 1, 0, 0, 0 };
             m_data[1] = { 0, 1, 0, 0 };
@@ -609,7 +609,7 @@ namespace Rainy
             return *this;
         }
 
-        Matrix4<T> &Transparancy()
+        Matrix4<T> &transparency()
         {
             Vector4<T> v0 = m_data[0];
             Vector4<T> v1 = m_data[1];
@@ -624,7 +624,7 @@ namespace Rainy
             return *this;
         }
 
-        Matrix4<T> Transparancy_rnm()
+        Matrix4<T> transparency_rnm()
         {
             Vector4<T> v0 = m_data[0];
             Vector4<T> v1 = m_data[1];
@@ -637,7 +637,7 @@ namespace Rainy
                      { v0.w, v1.w, v2.w, v3.w } };
         }
 
-        T Det() const
+        T det() const
         {
             Vector4<T> const &v1 = m_data[1];
             Vector4<T> const &v2 = m_data[2];
@@ -658,17 +658,17 @@ namespace Rainy
                 Matrix3<T> m_m = { { v1[pos[0]], v1[pos[1]], v1[pos[2]] },
                                    { v2[pos[0]], v2[pos[1]], v2[pos[2]] },
                                    { v3[pos[0]], v3[pos[1]], v3[pos[2]] } };
-                answer += m_data[0][i] * m_m.Det() * a;
+                answer += m_data[0][i] * m_m.det() * a;
             }
 
             return answer;
         }
 
-        // BEGIN block of test function for Inverse matrix
-        Matrix4<T> Adjoint() const
+        // BEGIN block of test function for inverse matrix
+        Matrix4<T> adjoint() const
         {
             Matrix4<T> m_m = *this;
-            m_m.Transparancy();
+            m_m.transparency();
             auto algadd = [&m_m](uint32_t p_i, uint32_t p_j)
             {
                 Matrix3<T> matrix_for_addition;
@@ -696,7 +696,7 @@ namespace Rainy
                         dest[j - j_offset] = v_src[j];
                     }
                 }
-                return matrix_for_addition.Det();
+                return matrix_for_addition.det();
                 ;
             };
 
@@ -714,33 +714,33 @@ namespace Rainy
             return adjoint_m;
         }
 
-        Matrix4<T> Inverse() const
+        Matrix4<T> inverse() const
         {
-            T m_Det = Det();
-            return Adjoint().Mul(T(1. / m_Det));
+            T m_Det = det();
+            return adjoint().mul(T(1. / m_Det));
         }
 
-        // END block of test function for Inverse matrix
+        // END block of test function for inverse matrix
 
-        Matrix4<T> &Scale(float const &Scale)
+        Matrix4<T> &scale(float const &Scale)
         {
             Matrix4<T> m_m = { { Scale, 0, 0, 0 },
                                { 0, Scale, 0, 0 },
                                { 0, 0, Scale, 0 },
                                { 0, 0, 0, 1 } };
-            return Mul(m_m);
+            return mul(m_m);
         }
 
-        Matrix4<T> &Scale(Vector4<T> scale)
+        Matrix4<T> &scale(Vector4<T> scale)
         {
             Matrix4<T> m_m = { { scale.x, 0, 0, 0 },
                                { 0, scale.y, 0, 0 },
                                { 0, 0, scale.z, 0 },
                                { 0, 0, 0, scale.w } };
-            return Mul(m_m);
+            return mul(m_m);
         }
 
-        Matrix4<T> &Mul(Matrix4<T> const &m)
+        Matrix4<T> &mul(Matrix4<T> const &m)
         {
             Vector4<T> *new_data = new Vector4<T>[4];
 
@@ -762,7 +762,7 @@ namespace Rainy
             return *this;
         }
 
-        Vector4<T> Mul(Vector4<T> const &p_v)
+        Vector4<T> mul(Vector4<T> const &p_v)
         {
             Vector4<T> m_m;
 
@@ -777,16 +777,16 @@ namespace Rainy
             return m_m;
         }
 
-        Matrix4<T> &Translate(Vector3<T> const &p_v)
+        Matrix4<T> &translate(Vector3<T> const &p_v)
         {
             Matrix4<T> m_m;
             m_m.m_data[0][3] = p_v.x;
             m_m.m_data[1][3] = p_v.y;
             m_m.m_data[2][3] = p_v.z;
-            return Mul(m_m);
+            return mul(m_m);
         }
 
-        Matrix4<T> &Rotate(float const &angle, Vector3<T> const &axis)
+        Matrix4<T> &rotate(float const &angle, Vector3<T> const &axis)
         {
             using std::cos;
             using std::sin;
@@ -806,12 +806,12 @@ namespace Rainy
                                  0 },
                                { 0, 0, 0, 1 } };
 
-            return Mul(m_m);
+            return mul(m_m);
         }
 
-        T *GetData() const { return (T *)m_data; }
+        T *getData() const { return (T *)m_data; }
 
-        std::string String() const
+        std::string toString() const
         {
             return m_data[0].str() + '\n' + m_data[1].str() + '\n' + m_data[2].str() + '\n' +
                    m_data[3].str();
@@ -1049,11 +1049,11 @@ namespace Rainy
     class AABB2D
     {
     public:
-        T GetWidth() const { return Max.x - Min.x; }
+        T getWidth() const { return Max.x - Min.x; }
 
-        T GetHeight() const { return Max.y - Min.y; }
+        T getHeight() const { return Max.y - Min.y; }
 
-        void Move(Vector2<T> offset)
+        void move(Vector2<T> offset)
         {
             Min += offset;
             Max += offset;
@@ -1071,7 +1071,7 @@ namespace Rainy
     bool RectangleAreasOverlay(RectangleAreaf first, RectangleAreaf second);
     bool RectangleAreasOverlay(RectangleAreai first, RectangleAreai second, RectangleAreai& dest);*/
     template<typename T>
-    bool AABB2DInter(AABB2D<T> first, AABB2D<T> second)
+    bool aabb2dInter(AABB2D<T> first, AABB2D<T> second)
     {
         if (first.Max.x < second.Min.x || first.Min.x > second.Max.x)
             return false;
@@ -1081,77 +1081,77 @@ namespace Rainy
     }
 
     template<typename T>
-    bool AABB2DZeroSpace(Rainy::AABB2D<T> const &aabb)
+    bool aabb2dZeroSpace(Rainy::AABB2D<T> const &aabb)
     {
         return ((aabb.Max.x - aabb.Min.x) <= 0) || ((aabb.Max.y - aabb.Min.y) <= 0);
     };
 
-    bool AABB2DOverlay(AABB2Df first, AABB2Df second, AABB2Df &dest);
+    bool aabb2dOverlay(AABB2Df first, AABB2Df second, AABB2Df &dest);
 
-    bool AABB2DOverlay(AABB2Di first, AABB2Di second, AABB2Di &dest);
+    bool aabb2dOverlay(AABB2Di first, AABB2Di second, AABB2Di &dest);
 
-    std::pair<AABB2Df, AABB2Df> AABB2DSplit(AABB2Df aabb,
+    std::pair<AABB2Df, AABB2Df> aabb2dSplit(AABB2Df aabb,
                                             float splitVal,
                                             bool hSplit = true /* horizontal split - default */);
 
-    std::pair<AABB2Di, AABB2Di> AABB2DSplit(AABB2Di aabb,
+    std::pair<AABB2Di, AABB2Di> aabb2dSplit(AABB2Di aabb,
                                             int32_t splitVal,
                                             bool hSplit = true /* horizontal split - default */);
 
-    std::vector<AABB2Di> AABB2DExcludeOverlay(AABB2Di aabb, AABB2Di overlay);
+    std::vector<AABB2Di> aabb2dExcludeOverlay(AABB2Di aabb, AABB2Di overlay);
 
-    bool InterRayAndSurface(Vector3f surfPoint,
+    bool interRayAndSurface(Vector3f surfPoint,
                             Vector3f surfNormal,
                             Vector3f rayStartPoint,
                             Vector3f rayDir,
                             Vector3f &dest,
                             float &rayScale);
 
-    bool InterRayAndSphere(Vector3f sphereCenter,
+    bool interRayAndSphere(Vector3f sphereCenter,
                            float radius,
                            Vector3f rayStartPoint,
                            Vector3f rayDir,
                            Vector3f &dest,
                            float &rayScale);
 
-    Vector3f BarycentricCoord(Vector3f const &p,
+    Vector3f barycentricCoord(Vector3f const &p,
                               Vector3f const &p0,
                               Vector3f const &p1,
                               Vector3f const &p2);
 
-    Matrix4f CreateModelMatrix(Vector3f const &position,
+    Matrix4f createModelMatrix(Vector3f const &position,
                                Vector3f const &rotation,
                                float const &scale);
-    Matrix4f CreateModelMatrix(Vector3f const &position,
+    Matrix4f createModelMatrix(Vector3f const &position,
                                Vector3f const &rotation,
                                Vector3f const &scale);
-    Matrix4f CreateViewMatrix(Vector3f const &pos, float const &x_rot, float const &y_rot);
-    Matrix4f CreateLookAtMatrix(Vector3f pos, Vector3f at, Vector3f up);
-    Matrix4f CreatePerspectiveMatrix(float const &ar,
+    Matrix4f createViewMatrix(Vector3f const &pos, float const &x_rot, float const &y_rot);
+    Matrix4f createLookAtMatrix(Vector3f pos, Vector3f at, Vector3f up);
+    Matrix4f createPerspectiveMatrix(float const &ar,
                                      float const &fov,
                                      float const &nearPoint,
                                      float const &farPoint);
-    Matrix4f CreatePerspectiveMatrix(float left,
+    Matrix4f createPerspectiveMatrix(float left,
                                      float right,
                                      float bottom,
                                      float top,
                                      float nearPoint,
                                      float farPoint);
-    Matrix4f CreateOrthographicMatrix(float left,
+    Matrix4f createOrthographicMatrix(float left,
                                       float right,
                                       float bottom,
                                       float top,
                                       float nearPoint,
                                       float farPoint);
 
-    Vector3f ViewportSpaceToWorldSpace(Vector2f const &viewport_position,
+    Vector3f viewportSpaceToWorldSpace(Vector2f const &viewport_position,
                                        Matrix4f const &projection_matrix,
                                        Matrix4f const &view_matrix,
                                        uint16_t viewport_width,
                                        uint16_t viewport_height);
 
-    Vector3f GetLookDirection(Vector3f rotation);
+    Vector3f getLookDirection(Vector3f rotation);
 
-    float Centerf(float min, float max);
+    float center(float min, float max);
 
 }

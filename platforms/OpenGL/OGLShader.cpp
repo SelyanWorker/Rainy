@@ -168,14 +168,14 @@ namespace Rainy
             glUniformMatrix3fv(GetUniformLocation(name),
                                1,
                                transpose ? GL_TRUE : GL_FALSE,
-                               matrix.GetData());
+                               matrix.getData());
         });
     }
 
     void OGLShader::SetUniform(const char *name, Matrix4f matrix, bool transpose)
     {
         GET_UNIFORM_LOCATION(name, {
-            glUniformMatrix4fv(location, 1, transpose ? GL_TRUE : GL_FALSE, matrix.GetData());
+            glUniformMatrix4fv(location, 1, transpose ? GL_TRUE : GL_FALSE, matrix.getData());
         });
     }
 

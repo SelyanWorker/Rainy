@@ -7,38 +7,38 @@ namespace Rainy
 {
     Input *Input::m_input = new WindowsInput();
 
-    bool WindowsInput::IsKeyPressedImpl(uint32_t KeyCode)
+    bool WindowsInput::isKeyPressedImpl(uint32_t KeyCode)
     {
         GLFWwindow *glfwWindow =
-            static_cast<GLFWwindow *>(Application::Get()->GetWindow()->GetNativeWindow());
+            static_cast<GLFWwindow *>(Application::get()->getWindow()->getNativeWindow());
         return glfwGetKey(glfwWindow, KeyCode) == GLFW_PRESS;
     }
 
-    bool WindowsInput::IsKeyReleaseImpl(uint32_t KeyCode)
+    bool WindowsInput::isKeyReleaseImpl(uint32_t KeyCode)
     {
         GLFWwindow *glfwWindow =
-            static_cast<GLFWwindow *>(Application::Get()->GetWindow()->GetNativeWindow());
+            static_cast<GLFWwindow *>(Application::get()->getWindow()->getNativeWindow());
         return glfwGetKey(glfwWindow, KeyCode) == GLFW_RELEASE;
     }
 
-    bool WindowsInput::IsMouseKeyPressedImpl(uint32_t mouseKeyCode)
+    bool WindowsInput::isMouseKeyPressedImpl(uint32_t mouseKeyCode)
     {
         GLFWwindow *glfwWindow =
-            static_cast<GLFWwindow *>(Application::Get()->GetWindow()->GetNativeWindow());
+            static_cast<GLFWwindow *>(Application::get()->getWindow()->getNativeWindow());
         return glfwGetMouseButton(glfwWindow, mouseKeyCode) == GLFW_PRESS;
     }
 
-    bool WindowsInput::IsMouseKeyReleasedImpl(uint32_t mouseKeyCode)
+    bool WindowsInput::isMouseKeyReleasedImpl(uint32_t mouseKeyCode)
     {
         GLFWwindow *glfwWindow =
-            static_cast<GLFWwindow *>(Application::Get()->GetWindow()->GetNativeWindow());
+            static_cast<GLFWwindow *>(Application::get()->getWindow()->getNativeWindow());
         return glfwGetMouseButton(glfwWindow, mouseKeyCode) == GLFW_RELEASE;
     }
 
-    std::pair<float, float> WindowsInput::GetCursorPositionImpl()
+    std::pair<float, float> WindowsInput::getCursorPositionImpl()
     {
         GLFWwindow *glfwWindow =
-            static_cast<GLFWwindow *>(Application::Get()->GetWindow()->GetNativeWindow());
+            static_cast<GLFWwindow *>(Application::get()->getWindow()->getNativeWindow());
         double xPos, yPos;
         glfwGetCursorPos(glfwWindow, &xPos, &yPos);
         int winXPos, winYPos;

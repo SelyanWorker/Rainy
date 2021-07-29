@@ -85,9 +85,9 @@ namespace te
 
         // void SetShader(Rainy::Shader* shader) { m_shader = shader; }
 
-        void SetScale(float scale) { static_cast<Entity *>(this)->SetScale(scale); }
+        void SetScale(float scale) { static_cast<Entity *>(this)->setScale(scale); }
 
-        float GetScale() const { return static_cast<const Entity *>(this)->GetScale().x; }
+        float GetScale() const { return static_cast<const Entity *>(this)->getScale().x; }
 
         // Rainy::Shader* GetShader() { return m_shader; }
 

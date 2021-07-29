@@ -21,87 +21,87 @@ namespace Rainy
         m_frameTime = 0;
         m_run = true;
 
-        m_window = Window::Create({ "Terrain Editor", 1024, 768 });
+        m_window = Window::create({ "Terrain Editor", 1024, 768 });
         RN_APP_INFO("GLFW windows create!");
 
-        m_window->SetEventFunction(RN_BIND_MEMBER_FUN(Application::OnEvent));
+        m_window->setEventFunction(RN_BIND_MEMBER_FUN(Application::onEvent));
 
         for (uint16_t i = 0; i < 512; i++)
             KeyStates[i] = 0;
 
         imguiLayer = new ImGuiLayer();
-        PushLayer(imguiLayer);
+        pushLayer(imguiLayer);
     }
 
-    Application::~Application() { ShutDown(); }
+    Application::~Application() { shutDown(); }
 
-    void Application::PushLayer(Layer *layer) { m_layerStack.PushLayer(layer); }
+    void Application::pushLayer(Layer *layer) { m_layerStack.pushLayer(layer); }
 
-    void Application::PopLayer() { m_layerStack.PopLayer(); }
+    void Application::popLayer() { m_layerStack.popLayer(); }
 
-    Application *Application::Get() { return m_application; }
+    Application *Application::get() { return m_application; }
 
-    Window *Application::GetWindow() { return m_window; }
+    Window *Application::getWindow() { return m_window; }
 
-    float Application::GetFrameTime() const { return m_frameTime; }
+    float Application::getFrameTime() const { return m_frameTime; }
 
-    void Application::Run()
+    void Application::run()
     {
         Setup();
 
         constexpr float BORDER_FRAME_TIME = 1.f / 120.f;
-        TimeStep time = TimeStep::GetTime();
+        TimeStep time = TimeStep::getTime();
         for (; m_run;)
         {
-            m_window->OnUpdate();
+            m_window->onUpdate();
 
             Clear();
 
             for (auto layer : m_layerStack)
             {
-                layer->OnUpdate();
+                layer->onUpdate();
             }
 
-            imguiLayer->Begin();
+            imguiLayer->begin();
             for (auto layer : m_layerStack)
             {
-                layer->OnImGuiRender();
+                layer->onImGuiRender();
             }
-            imguiLayer->End();
+            imguiLayer->end();
 
-            m_window->SwapBuffers();
+            m_window->swapBuffers();
 
-            TimeStep currentTime = TimeStep::GetTime();
-            m_frameTime = currentTime.GetSeconds() - time.GetSeconds();
+            TimeStep currentTime = TimeStep::getTime();
+            m_frameTime = currentTime.getSeconds() - time.getSeconds();
             for (; m_frameTime <= BORDER_FRAME_TIME;)
             {
-                currentTime = TimeStep::GetTime();
-                m_frameTime = currentTime.GetSeconds() - time.GetSeconds();
+                currentTime = TimeStep::getTime();
+                m_frameTime = currentTime.getSeconds() - time.getSeconds();
             }
             time = currentTime;
         }
 
-        ShutDown();
+        shutDown();
     }
 
-    void Application::EnableCursor() { m_window->EnableCursor(); }
+    void Application::enableCursor() { m_window->enableCursor(); }
 
-    void Application::DisableCursor() { m_window->DisableCursor(); }
+    void Application::disableCursor() { m_window->disableCursor(); }
 
-    void Application::OnEvent(Event &e)
+    void Application::onEvent(Event &e)
     {
         EventDispatcher dispatcher(e);
-        dispatcher.Dispatch<WindowCloseEvent>(RN_BIND_MEMBER_FUN(Application::OnWindowClose));
+        dispatcher.dispatch<WindowCloseEvent>(RN_BIND_MEMBER_FUN(Application::onWindowClose));
 
         for (auto layer : m_layerStack)
         {
-            layer->OnEvent(e);
+            layer->onEvent(e);
             if (e.Handled)
                 break;
         }
     }
 
-    bool Application::OnWindowClose(WindowCloseEvent &e)
+    bool Application::onWindowClose(WindowCloseEvent &e)
     {
         m_run = false;
         return true;
@@ -123,7 +123,7 @@ namespace Rainy
         KeyStates[e.GetKeyCode()] = 0;
     }*/
 
-    void Application::ShutDown()
+    void Application::shutDown()
     {
         delete m_window;
         RN_APP_INFO("Application shutdown.");

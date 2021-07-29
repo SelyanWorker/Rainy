@@ -3,7 +3,7 @@
 
 namespace Rainy
 {
-    bool InterRayAndSurface(Vector3f surfPoint,
+    bool interRayAndSurface(Vector3f surfPoint,
                             Vector3f surfNormal,
                             Vector3f rayStartPoint,
                             Vector3f rayDir,
@@ -26,7 +26,7 @@ namespace Rainy
         return false;
     }
 
-    bool InterRayAndSphere(Vector3f sphereCenter,
+    bool interRayAndSphere(Vector3f sphereCenter,
                            float radius,
                            Vector3f rayStartPoint,
                            Vector3f rayDir,
@@ -57,7 +57,7 @@ namespace Rainy
         return true;
     }
 
-    Vector3f BarycentricCoord(Vector3f const &p,
+    Vector3f barycentricCoord(Vector3f const &p,
                               Vector3f const &p0,
                               Vector3f const &p1,
                               Vector3f const &p2)
@@ -69,42 +69,42 @@ namespace Rainy
         return { w0, w1, w2 };
     }
 
-    Matrix4f CreateModelMatrix(Vector3f const &position,
+    Matrix4f createModelMatrix(Vector3f const &position,
                                Vector3f const &rotation,
                                float const &Scale)
     {
         Matrix4f matrix;
-        matrix.Translate(position);
-        matrix.Rotate(rotation.x, Vector3f{ 1, 0, 0 });
-        matrix.Rotate(rotation.y, Vector3f{ 0, 1, 0 });
-        matrix.Rotate(rotation.z, Vector3f{ 0, 0, 1 });
-        matrix.Scale(Scale);
+        matrix.translate(position);
+        matrix.rotate(rotation.x, Vector3f{ 1, 0, 0 });
+        matrix.rotate(rotation.y, Vector3f{ 0, 1, 0 });
+        matrix.rotate(rotation.z, Vector3f{ 0, 0, 1 });
+        matrix.scale(Scale);
         return matrix;
     };
 
-    Matrix4f CreateModelMatrix(Vector3f const &position,
+    Matrix4f createModelMatrix(Vector3f const &position,
                                Vector3f const &rotation,
                                Vector3f const &scale)
     {
         Matrix4f matrix;
-        matrix.Translate(position);
-        matrix.Rotate(rotation.x, Vector3f{ 1, 0, 0 });
-        matrix.Rotate(rotation.y, Vector3f{ 0, 1, 0 });
-        matrix.Rotate(rotation.z, Vector3f{ 0, 0, 1 });
-        matrix.Scale({ scale, 1 });
+        matrix.translate(position);
+        matrix.rotate(rotation.x, Vector3f{ 1, 0, 0 });
+        matrix.rotate(rotation.y, Vector3f{ 0, 1, 0 });
+        matrix.rotate(rotation.z, Vector3f{ 0, 0, 1 });
+        matrix.scale({ scale, 1 });
         return matrix;
     }
 
-    Matrix4f CreateViewMatrix(Vector3f const &pos, float const &x_rot, float const &y_rot)
+    Matrix4f createViewMatrix(Vector3f const &pos, float const &x_rot, float const &y_rot)
     {
         Matrix4f matrix;
-        matrix.Rotate(x_rot, Vector3f{ 1, 0, 0 });
-        matrix.Rotate(-y_rot, Vector3f{ 0, 1, 0 });
-        matrix.Translate(Vector3f{ -pos.x, -pos.y, -pos.z });
+        matrix.rotate(x_rot, Vector3f{ 1, 0, 0 });
+        matrix.rotate(-y_rot, Vector3f{ 0, 1, 0 });
+        matrix.translate(Vector3f{ -pos.x, -pos.y, -pos.z });
         return matrix;
     }
 
-    Matrix4f CreateLookAtMatrix(Vector3f pos, Vector3f at, Vector3f up)
+    Matrix4f createLookAtMatrix(Vector3f pos, Vector3f at, Vector3f up)
     {
         Vector3f zAxis = (at - pos).normalize();
         Vector3f xAxis = up.cross(zAxis).normalize();
@@ -118,7 +118,7 @@ namespace Rainy
         return matrix;
     }
 
-    Matrix4f CreatePerspectiveMatrix(float const &ar,
+    Matrix4f createPerspectiveMatrix(float const &ar,
                                      float const &fov,
                                      float const &nearPoint,
                                      float const &farPoint)
@@ -142,11 +142,11 @@ namespace Rainy
         // float tangent = tanf(ToRadian(fov / 2));	// tangent of half fovY
         // float height = nearPoint * tangent;			// half height of near plane
         // float width = height * ar;					// half width of near plane
-        // return CreatePerspectiveMatrix(-width, width, -height, height,
+        // return createPerspectiveMatrix(-width, width, -height, height,
         //	nearPoint, farPoint);
     }
 
-    Matrix4f CreatePerspectiveMatrix(float left,
+    Matrix4f createPerspectiveMatrix(float left,
                                      float right,
                                      float bottom,
                                      float top,
@@ -167,7 +167,7 @@ namespace Rainy
         return matrix;
     }
 
-    Matrix4f CreateOrthographicMatrix(float left,
+    Matrix4f createOrthographicMatrix(float left,
                                       float right,
                                       float bottom,
                                       float top,
@@ -186,7 +186,7 @@ namespace Rainy
         return matrix;
     }
 
-    Vector3f GetLookDirection(Vector3f rotation)
+    Vector3f getLookDirection(Vector3f rotation)
     {
         using std::cos;
         using std::sin;
@@ -199,7 +199,7 @@ namespace Rainy
 
     float ToRadian(float angle) { return angle * (PI / 180); }
 
-    Vector3f ViewportSpaceToWorldSpace(Vector2f const &viewport_position,
+    Vector3f viewportSpaceToWorldSpace(Vector2f const &viewport_position,
                                        Matrix4f const &projection_matrix,
                                        Matrix4f const &view_matrix,
                                        uint16_t viewport_width,
@@ -210,12 +210,12 @@ namespace Rainy
                                 1,
                                 1 };
 
-        Matrix4f invProjM = projection_matrix.Inverse();
-        Matrix4f invViewM = view_matrix.Inverse();
+        Matrix4f invProjM = projection_matrix.inverse();
+        Matrix4f invViewM = view_matrix.inverse();
 
-        Vector4f eyeSpaceV = invProjM.Mul(clipSpaceV);
+        Vector4f eyeSpaceV = invProjM.mul(clipSpaceV);
         eyeSpaceV.w = 0;
-        Vector4f worldSpaceV = invViewM.Mul(eyeSpaceV);
+        Vector4f worldSpaceV = invViewM.mul(eyeSpaceV);
 
         return worldSpaceV.getVector3();
     }
@@ -275,9 +275,9 @@ bool RectangleAreasOverlay(RectangleAreai first, RectangleAreai second, Rectangl
     }
 */
 
-    float Centerf(float min, float max) { return (max - min) / 2.f + min; }
+    float center(float min, float max) { return (max - min) / 2.f + min; }
 
-    bool AABB2DOverlay(AABB2Df first, AABB2Df second, AABB2Df &dest)
+    bool aabb2dOverlay(AABB2Df first, AABB2Df second, AABB2Df &dest)
     {
         auto moveArea = [](Rainy::AABB2Df &area, float xOffset, float yOffset)
         {
@@ -309,20 +309,20 @@ bool RectangleAreasOverlay(RectangleAreai first, RectangleAreai second, Rectangl
         return true;
     }
 
-    bool AABB2DOverlay(AABB2Di first, AABB2Di second, AABB2Di &dest)
+    bool aabb2dOverlay(AABB2Di first, AABB2Di second, AABB2Di &dest)
     {
         using std::abs;
         using std::fmaxf;
         using std::fminf;
 
-        if (!AABB2DInter(first, second))
+        if (!aabb2dInter(first, second))
             return false;
 
         Vector2i offset{ int32_t(fmaxf(abs(first.Min.x), abs(second.Min.x))),
                          int32_t(fmaxf(abs(first.Min.y), abs(second.Min.y))) };
 
-        first.Move(offset);
-        second.Move(offset);
+        first.move(offset);
+        second.move(offset);
 
         Rainy::AABB2Di overlay = { { int32_t(fmaxf(first.Min.x, second.Min.x)),
                                      int32_t(fmaxf(first.Min.y, second.Min.y)) },
@@ -334,13 +334,13 @@ bool RectangleAreasOverlay(RectangleAreai first, RectangleAreai second, Rectangl
         RN_ASSERT((overlay.Max.x - overlay.Min.x) >= 0, "(overlay.Max.x - overlay.Min.x) < 0");
         RN_ASSERT((overlay.Max.y - overlay.Min.y) >= 0, "(overlay.Max.y - overlay.Min.y) < 0");
 
-        overlay.Move(-offset);
+        overlay.move(-offset);
         dest = overlay;
 
         return true;
     }
 
-    std::pair<AABB2Df, AABB2Df> AABB2DSplit(AABB2Df aabb, float splitVal, bool hSplit)
+    std::pair<AABB2Df, AABB2Df> aabb2dSplit(AABB2Df aabb, float splitVal, bool hSplit)
     {
         std::pair<AABB2Df, AABB2Df> result;
 
@@ -368,7 +368,7 @@ bool RectangleAreasOverlay(RectangleAreai first, RectangleAreai second, Rectangl
         return result;
     }
 
-    std::pair<AABB2Di, AABB2Di> AABB2DSplit(AABB2Di aabb, int32_t splitVal, bool hSplit)
+    std::pair<AABB2Di, AABB2Di> aabb2dSplit(AABB2Di aabb, int32_t splitVal, bool hSplit)
     {
         std::pair<AABB2Di, AABB2Di> result;
 
@@ -396,28 +396,28 @@ bool RectangleAreasOverlay(RectangleAreai first, RectangleAreai second, Rectangl
         return result;
     }
 
-    std::vector<AABB2Di> AABB2DExcludeOverlay(AABB2Di aabb, AABB2Di overlay)
+    std::vector<AABB2Di> aabb2dExcludeOverlay(AABB2Di aabb, AABB2Di overlay)
     {
         std::vector<AABB2Di> parts;
 
-        auto split = AABB2DSplit(aabb, overlay.Min.y, true);
-        if (!AABB2DZeroSpace(split.first))
+        auto split = aabb2dSplit(aabb, overlay.Min.y, true);
+        if (!aabb2dZeroSpace(split.first))
             parts.push_back(split.first);
 
-        split = AABB2DSplit(split.second, overlay.Max.y, true);
-        if (!AABB2DZeroSpace(split.second))
+        split = aabb2dSplit(split.second, overlay.Max.y, true);
+        if (!aabb2dZeroSpace(split.second))
             parts.push_back(split.second);
 
-        split = AABB2DSplit(split.first, overlay.Min.x, false);
-        if (!AABB2DZeroSpace(split.first))
+        split = aabb2dSplit(split.first, overlay.Min.x, false);
+        if (!aabb2dZeroSpace(split.first))
             parts.push_back(split.first);
 
-        split = AABB2DSplit(split.second, overlay.Max.x, false);
-        if (!AABB2DZeroSpace(split.second))
+        split = aabb2dSplit(split.second, overlay.Max.x, false);
+        if (!aabb2dZeroSpace(split.second))
             parts.push_back(split.second);
 
-        int32_t width = aabb.GetWidth();
-        int32_t height = aabb.GetHeight();
+        int32_t width = aabb.getWidth();
+        int32_t height = aabb.getHeight();
 
         return parts;
     }

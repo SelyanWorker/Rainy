@@ -8,18 +8,18 @@
 
 namespace Rainy
 {
-    ImGuiLayer::ImGuiLayer() { Init(); }
+    ImGuiLayer::ImGuiLayer() { init(); }
 
     ImGuiLayer::~ImGuiLayer() {}
 
-    void ImGuiLayer::OnEvent(Event &e) {}
+    void ImGuiLayer::onEvent(Event &e) {}
 
-    void ImGuiLayer::OnUpdate() {}
+    void ImGuiLayer::onUpdate() {}
 
-    void ImGuiLayer::Init()
+    void ImGuiLayer::init()
     {
         auto nativeWindow =
-            reinterpret_cast<GLFWwindow *>(Application::Get()->GetWindow()->GetNativeWindow());
+            reinterpret_cast<GLFWwindow *>(Application::get()->getWindow()->getNativeWindow());
 
         RN_ASSERT(nativeWindow != nullptr, "ImGuiLayer: m_window is nullptr");
 
@@ -46,14 +46,14 @@ namespace Rainy
         ImGui_ImplOpenGL3_Init("#version 430");
     }
 
-    void ImGuiLayer::Begin()
+    void ImGuiLayer::begin()
     {
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
     }
 
-    void ImGuiLayer::End()
+    void ImGuiLayer::end()
     {
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -72,7 +72,7 @@ namespace Rainy
         }
     }
 
-    void ImGuiLayer::OnImGuiRender()
+    void ImGuiLayer::onImGuiRender()
     {
         static bool opt_fullscreen_persistant = true;
         bool opt_fullscreen = opt_fullscreen_persistant;
@@ -125,7 +125,7 @@ namespace Rainy
             ImGui::DockSpace(dockspaceId, ImVec2(0.0f, 0.0f), dockspace_flags);
         }
 
-        MenuBar();
+        menuBar();
 
         ImGui::End();
 

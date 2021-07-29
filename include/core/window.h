@@ -24,25 +24,25 @@ namespace Rainy
     class RAINY_API Window
     {
     public:
-        static Window *Create(WindowProperties properties);
+        static Window *create(WindowProperties properties);
 
-        virtual uint32_t GetWidth() const = 0;
+        virtual uint32_t getWidth() const = 0;
 
-        virtual uint32_t GetHeight() const = 0;
+        virtual uint32_t getHeight() const = 0;
 
-        virtual void *GetNativeWindow() const = 0;
+        virtual void *getNativeWindow() const = 0;
 
-        virtual std::pair<int32_t, int32_t> GetWindowsPosition() const = 0;
+        virtual std::pair<int32_t, int32_t> getWindowsPosition() const = 0;
 
-        virtual void SetEventFunction(EventFunType eventFun) = 0;
+        virtual void setEventFunction(EventFunType eventFun) = 0;
 
-        virtual void OnUpdate() = 0;
+        virtual void onUpdate() = 0;
 
-        virtual void SwapBuffers() = 0;
+        virtual void swapBuffers() = 0;
 
-        virtual void EnableCursor() = 0;
+        virtual void enableCursor() = 0;
 
-        virtual void DisableCursor() = 0;
+        virtual void disableCursor() = 0;
     };
 
 }

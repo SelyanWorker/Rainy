@@ -11,7 +11,7 @@ namespace Rainy
         ~MouseKeyReleaseEvent() = default;
 
         static EventType GetStaticType() { return EventType::MouseKeyRelease; }
-        EventType GetType() { return EventType::MouseKeyRelease; }
+        EventType getType() { return EventType::MouseKeyRelease; }
         uint32_t GetKeyCode() const { return m_buttonCode; }
 
     private:
@@ -25,7 +25,7 @@ namespace Rainy
         ~MouseKeyPressEvent() = default;
 
         static EventType GetStaticType() { return EventType::MouseKeyPressed; }
-        EventType GetType() { return EventType::MouseKeyPressed; }
+        EventType getType() { return EventType::MouseKeyPressed; }
         uint32_t GetKeyCode() const { return m_buttonCode; }
 
     private:
@@ -39,7 +39,7 @@ namespace Rainy
         ~MouseMoveEvent() = default;
 
         static EventType GetStaticType() { return EventType::MouseMoved; }
-        EventType GetType() { return EventType::MouseMoved; }
+        EventType getType() { return EventType::MouseMoved; }
 
         float GetX() const { return m_xPos; }
         float GetY() const { return m_yPos; }
@@ -56,7 +56,7 @@ namespace Rainy
         ~MouseScrollEvent() = default;
 
         static EventType GetStaticType() { return EventType::MouseScroll; }
-        EventType GetType() { return EventType::MouseScroll; }
+        EventType getType() { return EventType::MouseScroll; }
 
         float GetX() const { return m_xOffset; }
         float GeTy() const { return m_yOffset; }

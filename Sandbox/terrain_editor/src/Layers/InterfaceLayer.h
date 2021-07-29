@@ -68,11 +68,11 @@ public:
 
     ~InterfaceLayer() = default;
 
-    void OnEvent(Rainy::Event &e) {}
+    void onEvent(Rainy::Event &e) {}
 
-    void OnUpdate() {}
+    void onUpdate() {}
 
-    void OnImGuiRender()
+    void onImGuiRender()
     {
         if (b_ShowToolAndBrushMenu)
             ShowToolAndBrushMenu();
@@ -261,7 +261,7 @@ private:
         static float scale = 1.f;
         ImGui::SliderFloat("Quad size", &scale, 0.01f, 10.f);
 
-        if (ImGui::Button("Create"))
+        if (ImGui::Button("create"))
         {
             Rainy::Image *heightMap = Rainy::Image::Create(heightMapPath.c_str());
             Rainy::Image *normalMap = Rainy::Image::Create(normalMapPath.c_str());
@@ -293,7 +293,7 @@ private:
 
         ImGui::LabelText("", "Camera preferences: ");
         ImGui::SliderFloat("Move speed", &CAM_MOVE_SPEED, MIN_CAM_MOVE_SPEED, MAX_CAM_MOVE_SPEED);
-        ImGui::SliderFloat("Rotate speed",
+        ImGui::SliderFloat("rotate speed",
                            &CAM_ROTATE_SPEED,
                            MIN_CAM_ROTATE_SPEED,
                            MAX_CAM_ROTATE_SPEED);

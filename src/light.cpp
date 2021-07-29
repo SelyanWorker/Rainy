@@ -20,23 +20,23 @@ namespace Rainy
 
     Light::~Light() { delete m_box; }
 
-    void Light::ToShader(Shader *shader)
+    void Light::toShader(Shader *shader)
     {
-        shader->SetUniform(LIGHT_POSITION_UNIFORM_NAME, m_box->GetPosition());
+        shader->SetUniform(LIGHT_POSITION_UNIFORM_NAME, m_box->getPosition());
         shader->SetUniform(LIGHT_COLOR_UNIFORM_NAME, m_color);
         // shader->SetUniform(AMB_INT_UNIFORM_NAME, m_ambIntensity);
         shader->SetUniform(DIFF_INT_UNIFORM_NAME, m_diffIntensity);
         // shader->SetUniform(SPEC_INT_UNIFORM_NAME, m_specIntensity);
     }
 
-    void Light::DrawLightBox(Shader *boxShader)
+    void Light::drawLightBox(Shader *boxShader)
     {
-        boxShader->SetUniform("modelMatrix", m_box->GetModelMatrix());
-        m_box->Draw();
+        boxShader->SetUniform("modelMatrix", m_box->getModelMatrix());
+        m_box->draw();
     }
 
-    void Light::SetPosition(Vector3f position) { m_box->SetPosition(position); }
+    void Light::setPosition(Vector3f position) { m_box->setPosition(position); }
 
-    Vector3f Light::GetPosition() { return m_box->GetPosition(); }
+    Vector3f Light::getPosition() { return m_box->getPosition(); }
 
 }

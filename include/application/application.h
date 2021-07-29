@@ -16,36 +16,36 @@ namespace Rainy
     class RAINY_API Application
     {
     private:
-        void OnEvent(Event &e);
+        void onEvent(Event &e);
 
-        bool OnWindowClose(WindowCloseEvent &e);
+        bool onWindowClose(WindowCloseEvent &e);
         /*
         bool OnWindowResize(WindowResizeEvent& e);
         bool OnKeyPressed(KeyPressedEvent& e);
         bool OnKeyRelease(KeyReleaseEvent& e);
         */
-        void ShutDown();
+        void shutDown();
 
     public:
         Application();
 
         virtual ~Application();
 
-        void PushLayer(Layer *layer);
+        void pushLayer(Layer *layer);
 
-        void PopLayer();
+        void popLayer();
 
-        void Run();
+        void run();
 
-        static Application *Get();
+        static Application *get();
 
-        Window *GetWindow();
+        Window *getWindow();
 
-        float GetFrameTime() const;
+        float getFrameTime() const;
 
-        void EnableCursor();
+        void enableCursor();
 
-        void DisableCursor();
+        void disableCursor();
 
     private:
         bool m_run;
@@ -55,6 +55,6 @@ namespace Rainy
         static Application *m_application;
     };
 
-    Application *CreateApplication();
+    Application *createApplication();
 
 }

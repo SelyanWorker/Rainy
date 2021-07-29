@@ -15,35 +15,35 @@ namespace Rainy
             m_rotation(rotation),
             m_scale(scale)
         {
-            m_modelMatrix = CreateModelMatrix(m_position, m_rotation, m_scale);
+            m_modelMatrix = createModelMatrix(m_position, m_rotation, m_scale);
         }
 
         ~Entity() = default;
 
-        Matrix4f GetModelMatrix() const { return m_modelMatrix; }
+        Matrix4f getModelMatrix() const { return m_modelMatrix; }
 
-        Vector3f GetPosition() const { return m_position; }
+        Vector3f getPosition() const { return m_position; }
 
-        Vector3f GetRotation() const { return m_rotation; }
+        Vector3f getRotation() const { return m_rotation; }
 
-        Vector3f GetScale() const { return m_scale; }
+        Vector3f getScale() const { return m_scale; }
 
-        void SetPosition(Vector3f position)
+        void setPosition(Vector3f position)
         {
             m_position = position;
-            m_modelMatrix = CreateModelMatrix(m_position, m_rotation, m_scale);
+            m_modelMatrix = createModelMatrix(m_position, m_rotation, m_scale);
         }
 
-        void SetRotation(Vector3f rotation)
+        void setRotation(Vector3f rotation)
         {
             m_rotation = rotation;
-            m_modelMatrix = CreateModelMatrix(m_position, m_rotation, m_scale);
+            m_modelMatrix = createModelMatrix(m_position, m_rotation, m_scale);
         }
 
-        void SetScale(Vector3f scale)
+        void setScale(Vector3f scale)
         {
             m_scale = scale;
-            m_modelMatrix = CreateModelMatrix(m_position, m_rotation, m_scale);
+            m_modelMatrix = createModelMatrix(m_position, m_rotation, m_scale);
         }
 
     private:

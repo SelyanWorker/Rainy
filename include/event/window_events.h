@@ -7,7 +7,7 @@ namespace Rainy
     class RAINY_API WindowCloseEvent : public Event
     {
     public:
-        EventType GetType() { return EventType::WindowClose; }
+        EventType getType() { return EventType::WindowClose; }
         static EventType GetStaticType() { return EventType::WindowClose; }
     };
 
@@ -19,7 +19,7 @@ namespace Rainy
             m_newHeight(newHeight)
         {
         }
-        EventType GetType() { return EventType::WindowResize; }
+        EventType getType() { return EventType::WindowResize; }
         static EventType GetStaticType() { return EventType::WindowResize; }
 
     private:
@@ -31,7 +31,7 @@ namespace Rainy
     {
     public:
         WindowMoveEvent(int32_t x, int32_t y) : m_newX(x), m_newY(y) {}
-        EventType GetType() { return EventType::WindowMove; }
+        EventType getType() { return EventType::WindowMove; }
         static EventType GetStaticType() { return EventType::WindowMove; }
 
     private:

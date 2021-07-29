@@ -42,11 +42,11 @@ namespace te
                      Rainy::Image *normalsMap,
                      float heightMod)
     {
-        Rainy::TimeStep time0 = Rainy::TimeStep::GetTime();
+        Rainy::TimeStep time0 = Rainy::TimeStep::getTime();
 
         HEIGHT_MOD = heightMod;
 
-        m_maxHeight = GetPosition().y;
+        m_maxHeight = getPosition().y;
         m_minHeight = m_maxHeight;
 
         m_partsInSection = PARTS_SECTION_SIZE;
@@ -164,7 +164,7 @@ namespace te
         delete image;
 
         RN_APP_INFO("Terrain generation by {0} s.",
-                    Rainy::TimeStep::GetTime().GetSeconds() - time0.GetSeconds());
+                    Rainy::TimeStep::getTime().getSeconds() - time0.getSeconds());
     }
 
     Terrain::~Terrain()
@@ -180,7 +180,7 @@ namespace te
         m_normalMapTexture->Bind();
         terrainShader->Bind();
 
-        terrainShader->SetUniform("modelMatrix", GetModelMatrix());
+        terrainShader->SetUniform("modelMatrix", getModelMatrix());
         terrainShader->SetUniform("maxTessLevel", float(m_partsInSection));
         terrainShader->SetUniform("heightMap", int(m_heightMapTexture->GetTexUnit()));
         terrainShader->SetUniform("normalMap", int(m_normalMapTexture->GetTexUnit()));
@@ -200,7 +200,7 @@ namespace te
                                   float rayDistance) const
     {
         float scale = GetScale();
-        rayStartPoint.Mul(1.f / scale);
+        rayStartPoint.mul(1.f / scale);
 
         Vector3f startPoint;
         GetPointOnBorder(rayDirection, rayStartPoint, startPoint);
@@ -226,7 +226,7 @@ namespace te
                                         partLength,
                                         RECURSION_COUNT);
                     bool hasSection = GetSection({ dest.x, dest.z }) != nullptr;
-                    // dest.Mul(scale);
+                    // dest.mul(scale);
                     return hasSection;
                 }
             }
@@ -368,7 +368,7 @@ namespace te
     {
         RN_ASSERT(area != nullptr, "ApplyChanges: area == nullptr");
 
-        Rainy::TimeStep time0 = Rainy::TimeStep::GetTime();
+        Rainy::TimeStep time0 = Rainy::TimeStep::getTime();
         Vector2i firstIndex = area->FirstIndex;
         for (int32_t y = 0; y < area->Height; y++)
         {
@@ -522,7 +522,7 @@ namespace te
                 normal.y *= -1.f;
 
                 // [-1, 1] to [0, 1]
-                normal.Mul(0.5f);
+                normal.mul(0.5f);
                 normal.add({ 0.5f });
 
                 bytes[i + 0] = uint8_t(normal.x * 255.f);
@@ -554,7 +554,7 @@ namespace te
 
     void Terrain::Flat()
     {
-        float height = GetPosition().y;
+        float height = getPosition().y;
         for (auto &h : m_heights)
             h = height;
         m_heightMapTexture->TextureSubData(0, 0, TERRAIN_RES, TERRAIN_RES, m_heights.data());
@@ -564,7 +564,7 @@ namespace te
 
     bool Terrain::PointOnTerrain(float x, float z) const
     {
-        Vector3f position = GetPosition();
+        Vector3f position = getPosition();
         float topRightXOffset = position.x + (WORLD_HALF_TERRAIN_SIZE)-x;
         float topRightZOffset = position.z + (WORLD_HALF_TERRAIN_SIZE)-z;
 
@@ -606,7 +606,7 @@ namespace te
         constexpr float MAGIC_VALUE = 0.0001f;
 
         // left bottom
-        if (InterRayAndSurface({ 0, 0, -WORLD_HALF_TERRAIN_SIZE },
+        if (interRayAndSurface({ 0, 0, -WORLD_HALF_TERRAIN_SIZE },
                                { 0, 0, -1 },
                                start,
                                dir,
@@ -618,7 +618,7 @@ namespace te
             pointProcess();
         }
 
-        if (InterRayAndSurface({ -WORLD_HALF_TERRAIN_SIZE, 0, 0 },
+        if (interRayAndSurface({ -WORLD_HALF_TERRAIN_SIZE, 0, 0 },
                                { -1, 0, 0 },
                                start,
                                dir,
@@ -631,7 +631,7 @@ namespace te
         }
 
         // right top
-        if (InterRayAndSurface({ 0, 0, WORLD_HALF_TERRAIN_SIZE },
+        if (interRayAndSurface({ 0, 0, WORLD_HALF_TERRAIN_SIZE },
                                { 0, 0, 1 },
                                start,
                                dir,
@@ -643,7 +643,7 @@ namespace te
             pointProcess();
         }
 
-        if (InterRayAndSurface({ WORLD_HALF_TERRAIN_SIZE, 0, 0 },
+        if (interRayAndSurface({ WORLD_HALF_TERRAIN_SIZE, 0, 0 },
                                { 1, 0, 0 },
                                start,
                                dir,
@@ -694,7 +694,7 @@ namespace te
                    m_heights[(heightCoord.y + 1) * TERRAIN_RES + (heightCoord.x + 1)],
                    WORLD_PART_SIZE };
 
-        Vector3f weights = BarycentricCoord(localPosition, v0, v1, v2);
+        Vector3f weights = barycentricCoord(localPosition, v0, v1, v2);
 
         Vector3f v0w = v0 * weights.x;
         Vector3f v1w = v1 * weights.y;

@@ -3,7 +3,7 @@
 
 namespace Rainy
 {
-    /*Vector3f PerspectiveCamera::GetMoveIncrement(Vector3f direction)
+    /*Vector3f PerspectiveCamera::getMoveIncrement(Vector3f direction)
     {
         using std::sin;
         using std::cos;
@@ -34,14 +34,14 @@ namespace Rainy
         m_moveSpeed(moveSpeed),
         m_freeze(false)
     {
-        m_view = CreateViewMatrix(m_position, m_rotation.x, m_rotation.y);
-        m_projection = CreatePerspectiveMatrix(aspectRation, fov, nearPoint, farPoint);
+        m_view = createViewMatrix(m_position, m_rotation.x, m_rotation.y);
+        m_projection = createPerspectiveMatrix(aspectRation, fov, nearPoint, farPoint);
     }
 
-    void PerspectiveCamera::OnUpdate()
+    void PerspectiveCamera::onUpdate()
     {
-        static std::pair<float, float> prevCursorPosition = Input::GetCursorPosition();
-        std::pair<float, float> cursorPosition = Input::GetCursorPosition();
+        static std::pair<float, float> prevCursorPosition = Input::getCursorPosition();
+        std::pair<float, float> cursorPosition = Input::getCursorPosition();
 
         if (m_freeze)
         {
@@ -49,7 +49,7 @@ namespace Rainy
             return;
         }
 
-        float frameTime = Application::Get()->GetFrameTime();
+        float frameTime = Application::get()->getFrameTime();
 
         Vector3f prevPosition = m_position;
         Vector3f prevRotation = m_rotation;
@@ -65,86 +65,86 @@ namespace Rainy
         else if (m_rotation.x < -89)
             m_rotation.x = -89;
 
-        Vector3f direction = GetLookDirection(m_rotation);
+        Vector3f direction = getLookDirection(m_rotation);
         float yRotRad = ToRadian(m_rotation.y);
         float halfRad = PI / 2.f;
         Vector3f right = { std::sin(yRotRad - halfRad), 0, std::cos(yRotRad - halfRad) };
         Vector3f up = right.cross(direction);
 
-        if (Input::IsKeyPressed(RN_KEY_W))
+        if (Input::isKeyPressed(RN_KEY_W))
         {
             m_position += direction * (-m_moveSpeed);
         }
-        if (Input::IsKeyPressed(RN_KEY_S))
+        if (Input::isKeyPressed(RN_KEY_S))
         {
             m_position += direction * m_moveSpeed;
         }
-        if (Input::IsKeyPressed(RN_KEY_D))
+        if (Input::isKeyPressed(RN_KEY_D))
         {
             m_position += right * (-m_moveSpeed);
         }
-        if (Input::IsKeyPressed(RN_KEY_A))
+        if (Input::isKeyPressed(RN_KEY_A))
         {
             m_position += right * m_moveSpeed;
         }
-        if (Input::IsKeyPressed(RN_KEY_R))
+        if (Input::isKeyPressed(RN_KEY_R))
         {
             direction = { 0, 0, 0 };
             m_position = direction;
             m_rotation = direction;
         }
-        if (Input::IsKeyPressed(RN_KEY_Q))
+        if (Input::isKeyPressed(RN_KEY_Q))
         {
             m_position += up * m_moveSpeed;
         }
-        if (Input::IsKeyPressed(RN_KEY_E))
+        if (Input::isKeyPressed(RN_KEY_E))
         {
             m_position += up * (-m_moveSpeed);
         }
 
         if (prevPosition != m_position || prevRotation != m_rotation)
-            m_view = CreateViewMatrix(m_position, m_rotation.x, m_rotation.y);
-        // m_view = CreateLookAtMatrix(m_position, direction + m_position, up);
+            m_view = createViewMatrix(m_position, m_rotation.x, m_rotation.y);
+        // m_view = createLookAtMatrix(m_position, direction + m_position, up);
     }
 
-    Matrix4f PerspectiveCamera::GetViewMatrix() const { return m_view; }
+    Matrix4f PerspectiveCamera::getViewMatrix() const { return m_view; }
 
-    Matrix4f PerspectiveCamera::GetProjectionMatrix() const { return m_projection; }
+    Matrix4f PerspectiveCamera::getProjectionMatrix() const { return m_projection; }
 
-    void PerspectiveCamera::SetPosition(Vector3f position)
+    void PerspectiveCamera::setPosition(Vector3f position)
     {
         if (position != m_position)
         {
             m_position = position;
-            m_view = CreateViewMatrix(m_position, m_rotation.x, m_rotation.y);
+            m_view = createViewMatrix(m_position, m_rotation.x, m_rotation.y);
         }
     }
 
-    void PerspectiveCamera::SetRotation(Vector3f rotation)
+    void PerspectiveCamera::setRotation(Vector3f rotation)
     {
         if (rotation != m_rotation)
         {
             m_rotation = rotation;
-            m_view = CreateViewMatrix(m_position, m_rotation.x, m_rotation.y);
+            m_view = createViewMatrix(m_position, m_rotation.x, m_rotation.y);
         }
     }
 
-    Vector3f PerspectiveCamera::GetPosition() const { return m_position; }
+    Vector3f PerspectiveCamera::getPosition() const { return m_position; }
 
-    Vector3f PerspectiveCamera::GetRotation() const { return m_rotation; }
+    Vector3f PerspectiveCamera::getRotation() const { return m_rotation; }
 
-    void PerspectiveCamera::Freeze() { m_freeze = true; }
+    void PerspectiveCamera::freeze() { m_freeze = true; }
 
-    void PerspectiveCamera::UnFreeze() { m_freeze = false; }
+    void PerspectiveCamera::unFreeze() { m_freeze = false; }
 
-    bool PerspectiveCamera::IsFrozen() const { return m_freeze; }
+    bool PerspectiveCamera::isFrozen() const { return m_freeze; }
 
-    void PerspectiveCamera::RecreateProjectionMatrix(float aspectRation,
+    void PerspectiveCamera::recreateProjectionMatrix(float aspectRation,
                                                      float fov,
                                                      float nearPoint,
                                                      float farPoint)
     {
-        m_projection = CreatePerspectiveMatrix(aspectRation, fov, nearPoint, farPoint);
+        m_projection = createPerspectiveMatrix(aspectRation, fov, nearPoint, farPoint);
     }
 
 }

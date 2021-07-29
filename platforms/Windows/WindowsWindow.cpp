@@ -13,7 +13,7 @@
 
 namespace Rainy
 {
-    Window *Window::Create(WindowProperties prop) { return new WindowsWindow(prop); }
+    Window *Window::create(WindowProperties properties) { return new WindowsWindow(properties); }
 
     WindowsWindow::WindowsWindow(WindowProperties &prop)
     {
@@ -27,29 +27,29 @@ namespace Rainy
 
     WindowsWindow::~WindowsWindow() { Shutdown(); }
 
-    uint32_t WindowsWindow::GetWidth() const { return m_prop.m_width; }
+    uint32_t WindowsWindow::getWidth() const { return m_prop.m_width; }
 
-    uint32_t WindowsWindow::GetHeight() const { return m_prop.m_height; }
+    uint32_t WindowsWindow::getHeight() const { return m_prop.m_height; }
 
-    void *WindowsWindow::GetNativeWindow() const { return reinterpret_cast<void *>(m_window); }
+    void *WindowsWindow::getNativeWindow() const { return reinterpret_cast<void *>(m_window); }
 
-    std::pair<int32_t, int32_t> WindowsWindow::GetWindowsPosition() const
+    std::pair<int32_t, int32_t> WindowsWindow::getWindowsPosition() const
     {
         return { m_prop.m_x, m_prop.m_y };
     }
 
-    void WindowsWindow::SetEventFunction(EventFunType eventFun) { m_prop.m_eventFun = eventFun; }
+    void WindowsWindow::setEventFunction(EventFunType eventFun) { m_prop.m_eventFun = eventFun; }
 
-    void WindowsWindow::OnUpdate() { glfwPollEvents(); }
+    void WindowsWindow::onUpdate() { glfwPollEvents(); }
 
-    void WindowsWindow::SwapBuffers() { glfwSwapBuffers(m_window); }
+    void WindowsWindow::swapBuffers() { glfwSwapBuffers(m_window); }
 
-    void WindowsWindow::EnableCursor()
+    void WindowsWindow::enableCursor()
     {
         glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     }
 
-    void WindowsWindow::DisableCursor()
+    void WindowsWindow::disableCursor()
     {
         glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     }

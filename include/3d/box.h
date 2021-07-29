@@ -16,11 +16,11 @@ namespace Rainy
 
         ~Box();
 
-        void SetSize(Vector3f size);
+        void setSize(Vector3f size);
 
-        Vector3f GetSize() const;
+        Vector3f getSize() const;
 
-        void Draw();
+        void draw();
 
     private:
         struct Vertex

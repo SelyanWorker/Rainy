@@ -9,7 +9,7 @@ namespace Rainy
     public:
         KeyPressEvent(unsigned keyId) : m_keyId(keyId) {}
         ~KeyPressEvent() = default;
-        EventType GetType() { return EventType::KeyPressed; }
+        EventType getType() { return EventType::KeyPressed; }
         static EventType GetStaticType() { return EventType::KeyPressed; }
         unsigned GetKeyCode() const { return m_keyId; }
 
@@ -22,7 +22,7 @@ namespace Rainy
     public:
         KeyReleaseEvent(unsigned KeyId) : m_KeyId(KeyId) {}
         ~KeyReleaseEvent() = default;
-        EventType GetType() { return EventType::KeyRelease; }
+        EventType getType() { return EventType::KeyRelease; }
         static EventType GetStaticType() { return EventType::KeyRelease; }
         unsigned GetKeyCode() const { return m_KeyId; }
 
@@ -35,7 +35,7 @@ namespace Rainy
     public:
         CharInputEvent(unsigned symbol) : m_symbol(symbol) {}
         ~CharInputEvent() = default;
-        EventType GetType() { return EventType::CharInput; }
+        EventType getType() { return EventType::CharInput; }
         static EventType GetStaticType() { return EventType::CharInput; }
         unsigned GetCharCode() const { return m_symbol; }
 
@@ -50,8 +50,8 @@ namespace Rainy
             :m_keyId(KeyId), m_count(count)
         {}
         ~KeyRepeatEvent() = default;
-        EventType GetType() { return EventType::KeyRepeat; }
-        static EventType GetStaticType() { return EventType::KeyRepeat; }
+        EventType getType() { return EventType::KeyRepeat; }
+        static EventType getStaticType() { return EventType::KeyRepeat; }
     private:
         unsigned m_keyId;
         unsigned m_count;

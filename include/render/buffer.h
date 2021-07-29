@@ -86,7 +86,7 @@ namespace Rainy
         virtual void SubData(int64_t offset, int64_t size, void *data) = 0;
 
         virtual void Reallocate(uint32_t size, void *data) = 0;
-        // virtual void* GetData(uint32_t buffer, int64_t offset, int64_t size, void* data);
+        // virtual void* getData(uint32_t buffer, int64_t offset, int64_t size, void* data);
 
         virtual void Bind() = 0;
 

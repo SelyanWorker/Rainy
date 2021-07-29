@@ -1,7 +1,7 @@
 #include "application/application.h"
 #include "application/entry_point.h"
 
-void Rainy::ImGuiLayer::MenuBar() {}
+void Rainy::ImGuiLayer::menuBar() {}
 
 class SandboxApp : public Rainy::Application
 {
@@ -11,4 +11,4 @@ public:
     ~SandboxApp() {}
 };
 
-Rainy::Application *Rainy::CreateApplication() { return new SandboxApp(); }
+Rainy::Application *Rainy::createApplication() { return new SandboxApp(); }

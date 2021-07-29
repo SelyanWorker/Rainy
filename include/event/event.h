@@ -37,9 +37,9 @@ namespace Rainy
         Event() : Handled(false) {}
         ~Event() = default;
 
-        virtual EventType GetType() { return EventType::None; }
+        virtual EventType getType() { return EventType::None; }
 
-        static EventType GetStaticType() { return EventType::None; }
+        static EventType getStaticType() { return EventType::None; }
 
     public:
         bool Handled;
@@ -52,9 +52,9 @@ namespace Rainy
         ~EventDispatcher() = default;
 
         template<typename EventT, typename FunType>
-        bool Dispatch(FunType const &fun)
+        bool dispatch(FunType const &fun)
         {
-            if (e.GetType() == EventT::GetStaticType())
+            if (e.getType() == EventT::getStaticType())
             {
                 e.Handled = fun(static_cast<EventT &>(e));
                 return true;

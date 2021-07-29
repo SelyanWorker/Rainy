@@ -14,13 +14,13 @@ namespace Rainy
 
         virtual ~Light();
 
-        virtual void ToShader(Shader *shader);
+        virtual void toShader(Shader *shader);
 
-        void DrawLightBox(Shader *boxShader);
+        void drawLightBox(Shader *boxShader);
 
-        void SetPosition(Vector3f position);
+        void setPosition(Vector3f position);
 
-        Vector3f GetPosition();
+        Vector3f getPosition();
 
     public:
         Vector3f m_color;

@@ -8,9 +8,9 @@ namespace Rainy
 
     LayerStack::~LayerStack() {}
 
-    void LayerStack::PushLayer(Layer *layer) { m_layers.push_back(layer); }
+    void LayerStack::pushLayer(Layer *layer) { m_layers.push_back(layer); }
 
-    void LayerStack::PopLayer() { m_layers.pop_back(); }
+    void LayerStack::popLayer() { m_layers.pop_back(); }
 
     std::vector<Layer *>::iterator LayerStack::begin() { return m_layers.begin(); }
 

@@ -16,19 +16,19 @@ namespace Rainy
         ImGuiLayer();
         ~ImGuiLayer();
 
-        void OnEvent(Event &e) override;
+        void onEvent(Event &e) override;
 
-        void OnUpdate() override;
+        void onUpdate() override;
 
-        void OnImGuiRender() override;
+        void onImGuiRender() override;
 
-        void MenuBar();
+        void menuBar();
 
-        void Init();
+        void init();
 
-        void Begin();
+        void begin();
 
-        void End();
+        void end();
     };
 
 }

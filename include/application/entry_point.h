@@ -3,17 +3,17 @@
 #include "application.h"
 #include "core/log.h"
 
-extern Rainy::Application *Rainy::CreateApplication();
+extern Rainy::Application *Rainy::createApplication();
 
 //#ifdef RN_PLATFORM_WINDOWS
 int main(int argc, char **argv)
 {
-    Rainy::Log::Init();
+    Rainy::Log::init();
     RN_CORE_INFO("Logger run!");
 
-    auto app = Rainy::CreateApplication();
+    auto app = Rainy::createApplication();
 
-    app->Run();
+    app->run();
 
     return 0;
 }
