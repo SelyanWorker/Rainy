@@ -7,34 +7,32 @@ using Rainy::Vector3f;
 // to delete in future
 
 //
-namespace te {
+namespace te
+{
+    class Brush
+    {
+    public:
+        using FalloffFuction = float (*)(float, float, float);
 
-	class Brush
-	{
-	public:
+        static float BaseFalloff(float falloff, float distance, float max_distance);
+        static float SmoothFalloff(float falloff, float distance, float max_distance);
+        static float LinearFalloff(float falloff, float distance, float max_distance);
 
-		using FalloffFuction = float(*)(float, float, float);
+    public:
+        explicit Brush(float size, float falloff, FalloffFuction falloffFunction = &BaseFalloff);
 
-		static float BaseFalloff(float falloff, float distance, float max_distance);
-		static float SmoothFalloff(float falloff, float distance, float max_distance);
-		static float LinearFalloff(float falloff, float distance, float max_distance);
+        ~Brush() = default;
 
-	public:
-		explicit Brush(float size, float falloff,
-			FalloffFuction falloffFunction = &BaseFalloff);
+        float GetFalloffFactor(float distance) const;
 
-		~Brush() = default;
+        void SetFalloffFunction(FalloffFuction fallofffunctor);
 
-		float GetFalloffFactor(float distance) const;
+    public:
+        float size{ 1 };
+        float falloff{ 0.5f };
 
-		void SetFalloffFunction(FalloffFuction fallofffunctor);
-
-	public:
-		float size{ 1 };
-		float falloff{ 0.5f };
-
-	private:
-		FalloffFuction falloffFunction;
-	};
+    private:
+        FalloffFuction falloffFunction;
+    };
 
 }

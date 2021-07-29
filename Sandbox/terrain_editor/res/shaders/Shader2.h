@@ -2,7 +2,6 @@
 
 #include <string>
 
-const std::string test = 
+const std::string test =
 #include "Terrain.glsl"
-;
-
+    ;

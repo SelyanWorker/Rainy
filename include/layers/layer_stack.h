@@ -5,25 +5,23 @@
 
 #include <vector>
 
-namespace Rainy {
+namespace Rainy
+{
+    class RAINY_API LayerStack
+    {
+    public:
+        LayerStack();
+        virtual ~LayerStack();
 
-	class RAINY_API LayerStack
-	{
-	public:
-					LayerStack();
-		virtual		~LayerStack();
+        void PushLayer(Layer *layer);
 
-		void		PushLayer(Layer * layer);
+        void PopLayer();
 
-		void		PopLayer();
+        std::vector<Layer *>::iterator begin();
+        std::vector<Layer *>::iterator end();
 
-		std::vector<Layer*>::iterator begin();
-		std::vector<Layer*>::iterator end();
-
-	private:
-		std::vector<Layer*> m_layers;
-
-	};
+    private:
+        std::vector<Layer *> m_layers;
+    };
 
 }
-

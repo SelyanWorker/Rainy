@@ -3,29 +3,28 @@
 #include "core/core.h"
 #include <cstdint>
 
-namespace Rainy {
+namespace Rainy
+{
+    class RAINY_API TimeStep
+    {
+    private:
+        TimeStep(float seconds) : m_seconds(seconds) {}
 
-	class RAINY_API TimeStep
-	{
-	private:
-		TimeStep(float seconds)
-		:	m_seconds(seconds) {}
+    public:
+        TimeStep(const TimeStep &other) { m_seconds = other.m_seconds; }
 
-	public:
-		TimeStep(const TimeStep& other) { m_seconds = other.m_seconds; }
+        float GetMilli() const { return m_seconds * 1000; }
 
-		float GetMilli() const { return m_seconds * 1000; }
+        float GetMicro() const { return m_seconds * 1000000; }
 
-		float GetMicro() const { return m_seconds * 1000000; }
+        float GetNano() const { return m_seconds * 1000000000; }
 
-		float GetNano() const { return m_seconds * 1000000000; }
+        float GetSeconds() const { return m_seconds; }
 
-		float GetSeconds() const { return m_seconds; }
+        static TimeStep GetTime();
 
-		static TimeStep GetTime();
-
-	private:
-		float m_seconds;
-	};
+    private:
+        float m_seconds;
+    };
 
 }

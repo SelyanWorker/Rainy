@@ -1,27 +1,14 @@
 #include "application/application.h"
 #include "application/entry_point.h"
 
-void Rainy::ImGuiLayer::MenuBar()
-{}
+void Rainy::ImGuiLayer::MenuBar() {}
 
 class SandboxApp : public Rainy::Application
 {
 public:
+    SandboxApp() : Application() { RN_APP_INFO("App run!"); }
 
-	SandboxApp()
-	:	Application()
-	{
-		RN_APP_INFO("App run!");
-	}
-
-	~SandboxApp()
-	{
-	}
-
+    ~SandboxApp() {}
 };
 
-Rainy::Application* Rainy::CreateApplication()
-{
-	return new SandboxApp();
-}
-
+Rainy::Application *Rainy::CreateApplication() { return new SandboxApp(); }

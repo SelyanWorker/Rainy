@@ -1,35 +1,34 @@
 #pragma once
 
 #include "core/core.h"
-#include "layers/layer.h"
+#include "core/window.h"
 #include "event/event.h"
 #include "event/key_events.h"
 #include "event/mouse_event.h"
 #include "event/window_events.h"
-#include "core/window.h"
+#include "layers/layer.h"
 
-namespace Rainy{
+namespace Rainy
+{
+    class RAINY_API ImGuiLayer : public Layer
+    {
+    public:
+        ImGuiLayer();
+        ~ImGuiLayer();
 
-	class RAINY_API ImGuiLayer : public Layer
-	{
-	public:
-		ImGuiLayer();
-		~ImGuiLayer();
+        void OnEvent(Event &e) override;
 
-		void OnEvent(Event& e) override;
+        void OnUpdate() override;
 
-		void OnUpdate() override;
+        void OnImGuiRender() override;
 
-		void OnImGuiRender() override;
+        void MenuBar();
 
-		void MenuBar();
+        void Init();
 
-		void Init();
+        void Begin();
 
-		void Begin();
-
-		void End();
-
-	};
+        void End();
+    };
 
 }
