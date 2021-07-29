@@ -2,9 +2,6 @@
 
 #include "render/texture_2d.h"
 
-#include <initializer_list>
-#include <utility>
-
 namespace Rainy
 {
     class RAINY_API FrameBuffer

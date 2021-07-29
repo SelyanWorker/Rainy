@@ -3,33 +3,6 @@
 #include "core/core.h"
 #include "core/log.h"
 
-#include <vector>
-
-//
-// uint32_t CreateBuffer()
-//{
-//	GLuint vbo;
-//	glGenBuffers(1, &vbo);
-//	return vbo;
-//}
-//
-// void BufferData(uint32_t buffer, void* dataPtr, size_t dataSize)
-//{
-//	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-//	glBufferData(GL_ARRAY_BUFFER, dataSize, dataPtr, GL_STATIC_DRAW);
-//	glBindBuffer(GL_ARRAY_BUFFER, 0);
-//}
-//
-// void BufferAttach(uint32_t vertexArray, uint32_t buffer,
-//	uint32_t index, uint32_t size, uint32_t stride, void* pointer)
-//{
-//	RN_ASSERT(vertexArray != 0 && buffer != 0, "VertexArray == 0 or Buffer == 0 in
-//\"BufferAttach\""); 	glBindVertexArray(vertexArray); 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-//	glVertexAttribPointer(index, size, GL_FLOAT, GL_FALSE, stride, pointer);
-//	glEnableVertexAttribArray(index);
-//	glBindVertexArray(0);
-//}
-
 namespace Rainy
 {
     enum RAINY_API ShaderDataType : int32_t

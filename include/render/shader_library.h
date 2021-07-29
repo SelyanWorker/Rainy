@@ -2,8 +2,6 @@
 
 #include "render/shader.h"
 
-#include <unordered_map>
-
 namespace Rainy
 {
     class RAINY_API ShaderLibrary

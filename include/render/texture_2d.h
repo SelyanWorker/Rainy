@@ -3,8 +3,6 @@
 #include "core/core.h"
 #include "texture.h"
 
-#include <cstdint>
-
 namespace Rainy
 {
     class RAINY_API Texture2D : public Texture

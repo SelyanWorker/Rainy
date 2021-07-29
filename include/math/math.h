@@ -1,10 +1,5 @@
 #pragma once
 
-#include <cmath>
-#include <iostream>
-#include <string>
-#include <vector>
-
 namespace Rainy
 {
     constexpr float PI = 3.14159265358979f;

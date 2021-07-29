@@ -1,7 +1,5 @@
 #pragma once
 
-#include <cstdint>
-
 #include "core/core.h"
 #include "core/entity.h"
 #include "math/math.h"

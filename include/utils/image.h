@@ -2,8 +2,6 @@
 
 #include "core/core.h"
 
-#include <cstdint>
-
 namespace Rainy
 {
     enum class ImageTypes

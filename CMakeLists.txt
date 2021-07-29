@@ -61,6 +61,10 @@ target_link_libraries(Rainy
         glad
         stb_image
         )
+target_precompile_headers(Rainy
+        PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include/pch.h
+        )
 #target_compile_definitions(Rainy PUBLIC RN_USING_DLL RN_BUILD_DLL)
 
 add_subdirectory(Sandbox)
