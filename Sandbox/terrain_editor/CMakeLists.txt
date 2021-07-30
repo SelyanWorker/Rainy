@@ -1,7 +1,9 @@
 file(GLOB terrain_editor_src
         CONFIGURE_DEPENDS
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/Layers/*.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/Terrain/*.cpp
+        terrain_editor/layers/src/*.cpp
+        terrain_editor/terrain/src/*.cpp
+        terrain_editor/tools/src/*.cpp
+        terrain_editor/globals.cpp
         )
 add_library(terrain_editor_lib
         STATIC
@@ -12,7 +14,7 @@ target_link_libraries(terrain_editor_lib
         Rainy
         )
 
-add_executable(terrain_editor ${CMAKE_CURRENT_SOURCE_DIR}/src/app.cpp)
+add_executable(terrain_editor terrain_editor/app.cpp)
 target_link_libraries(terrain_editor
         PRIVATE
         terrain_editor_lib

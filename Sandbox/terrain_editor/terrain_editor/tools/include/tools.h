@@ -1,7 +1,7 @@
 #pragma once
 
-#include "BrushT.h"
-#include "Terrainn.h"
+#include "../../Terrain/include/terrain.h"
+#include "brush.h"
 #include "math/math.h"
 
 #include <algorithm>

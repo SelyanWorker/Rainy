@@ -1,4 +1,4 @@
-#include "Terrainn.h"
+#include "../include/terrain.h"
 #include "core/time.h"
 #include "render/renderer.h"
 

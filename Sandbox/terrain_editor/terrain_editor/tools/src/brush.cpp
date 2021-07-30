@@ -1,6 +1,6 @@
 #include <cmath>
 
-#include "BrushT.h"
+#include "../include/brush.h"
 
 // s::Brush::Brush(float size, float falloff, FalloffFunctionType falloff_function)
 //	:falloff_function(falloff_function), size(size), falloff(falloff)

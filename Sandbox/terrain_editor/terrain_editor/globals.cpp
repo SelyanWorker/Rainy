@@ -1,6 +1,6 @@
-#include "../../res/shaders/Shaders.h"
+#include "../res/shaders/Shaders.h"
 
-#include "../Terrain/Tools.h"
+#include "tools/include/tools.h"
 
 te::ToolTypes toolType = te::ToolTypes::NONE;
 te::ToolManager *toolManager = nullptr;

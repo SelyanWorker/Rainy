@@ -7,10 +7,10 @@
 #include "imgui.h"
 #include "imgui_internal.h"
 
-#include "TerrainLayer.h"
-#include "../Terrain/BrushT.h"
-#include "../Terrain/Terrainn.h"
-#include "../Terrain/Tools.h"
+#include "../Terrain/include/terrain.h"
+#include "../tools/include/brush.h"
+#include "../tools/include/tools.h"
+#include "terrain_layer.h"
 
 constexpr float MAX_CAM_MOVE_SPEED = 10.f;
 constexpr float MIN_CAM_MOVE_SPEED = 0.1f;
@@ -55,10 +55,10 @@ extern bool b_ShowUtilsMenu;
 
 extern TerrainLayer *terrainLayer;   // rewrite
 
-class InterfaceLayer : public Rainy::Layer
+class GUILayer : public Rainy::Layer
 {
 public:
-    InterfaceLayer()
+    GUILayer()
     {
         SCULPT_STRENGTH = MIN_SCULPT_STRENGTH;
         SMOOTH_STRENGTH = MIN_SMOOTH_STRENGTH;
@@ -66,7 +66,7 @@ public:
         toolType = te::ToolTypes::SCULPT;
     }
 
-    ~InterfaceLayer() = default;
+    ~GUILayer() = default;
 
     void onEvent(Rainy::Event &e) {}
 

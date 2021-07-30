@@ -22,9 +22,9 @@
 
 #include "light/light.h"
 
-#include "../Terrain/BrushT.h"
-#include "../Terrain/Terrainn.h"
-#include "../Terrain/Tools.h"
+#include "../Terrain/include/terrain.h"
+#include "../tools/include/brush.h"
+#include "../tools/include/tools.h"
 
 extern std::unique_ptr<std::istream> TERRAIN_SHADER_SRC_STREAM_PTR;
 extern std::unique_ptr<std::istream> DRAW_NORMALS_SHADER_PTR;

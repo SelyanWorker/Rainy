@@ -8,11 +8,11 @@
 #include "render/renderer.h"
 #include "render/shader_library.h"
 
-#include "Layers/InterfaceLayer.h"
-#include "Layers/TerrainLayer.h"
+#include "layers/gui_layer.h"
+#include "layers/terrain_layer.h"
 
 TerrainLayer *terrainLayer = nullptr;
-InterfaceLayer *interfaceLayer = nullptr;
+GUILayer *interfaceLayer = nullptr;
 
 bool b_ShowToolAndBrushMenu = false;
 bool b_ShowGeneratorMenu = false;
@@ -87,7 +87,7 @@ public:
         terrainLayer = new TerrainLayer();
         pushLayer(terrainLayer);
 
-        interfaceLayer = new InterfaceLayer();
+        interfaceLayer = new GUILayer();
         pushLayer(interfaceLayer);
     }
 
