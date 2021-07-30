@@ -1,5 +1,6 @@
 #pragma once
 
+#include "geometry/vertex.h"
 #include "core/core.h"
 #include "core/entity.h"
 #include "math/math.h"
@@ -23,14 +24,7 @@ namespace Rainy
         void draw();
 
     private:
-        struct Vertex
-        {
-            Vector3f Position;
-            Vector2f TextureCoord;
-            Vector3f Normal;
-        };
-
-        static Vertex m_vertices[8];
+        static Vertex3D m_vertices[8];
         static uint32_t m_indices[36];
 
         VertexBuffer *m_vertexBuffer;
