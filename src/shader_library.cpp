@@ -1,8 +1,6 @@
 #include "render/shader_library.h"
 #include "core/log.h"
 
-#include <fstream>
-
 namespace Rainy
 {
     std::unordered_map<std::string, Shader *> ShaderLibrary::m_shaders;
