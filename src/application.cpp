@@ -119,8 +119,8 @@ namespace Rainy
     }
     bool Application::OnKeyRelease(KeyReleaseEvent& e)
     {
-        if (KeyStates[e.GetKeyCode()]) RN_APP_TRACE("Key release {0}", e.GetKeyCode());
-        KeyStates[e.GetKeyCode()] = 0;
+        if (KeyStates[e.GetKeyCode()]) RN_APP_TRACE("Key release {0}", e.getKeyCode());
+        KeyStates[e.getKeyCode()] = 0;
     }*/
 
     void Application::shutDown()

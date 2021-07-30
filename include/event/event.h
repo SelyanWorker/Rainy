@@ -54,6 +54,8 @@ namespace Rainy
         template<typename EventT, typename FunType>
         bool dispatch(FunType const &fun)
         {
+            auto test_0 = e.getType();
+            auto test_1 = EventT::getStaticType();
             if (e.getType() == EventT::getStaticType())
             {
                 e.Handled = fun(static_cast<EventT &>(e));

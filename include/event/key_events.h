@@ -10,11 +10,11 @@ namespace Rainy
         KeyPressEvent(unsigned keyId) : m_keyId(keyId) {}
         ~KeyPressEvent() = default;
         EventType getType() { return EventType::KeyPressed; }
-        static EventType GetStaticType() { return EventType::KeyPressed; }
-        unsigned GetKeyCode() const { return m_keyId; }
+        static EventType getStaticType() { return EventType::KeyPressed; }
+        uint32_t getKeyCode() const { return m_keyId; }
 
     private:
-        unsigned m_keyId;
+        uint32_t m_keyId;
     };
 
     class RAINY_API KeyReleaseEvent : public Event
@@ -23,11 +23,11 @@ namespace Rainy
         KeyReleaseEvent(unsigned KeyId) : m_KeyId(KeyId) {}
         ~KeyReleaseEvent() = default;
         EventType getType() { return EventType::KeyRelease; }
-        static EventType GetStaticType() { return EventType::KeyRelease; }
-        unsigned GetKeyCode() const { return m_KeyId; }
+        static EventType getStaticType() { return EventType::KeyRelease; }
+        uint32_t getKeyCode() const { return m_KeyId; }
 
     private:
-        unsigned m_KeyId;
+        uint32_t m_KeyId;
     };
 
     class RAINY_API CharInputEvent : public Event
@@ -36,11 +36,11 @@ namespace Rainy
         CharInputEvent(unsigned symbol) : m_symbol(symbol) {}
         ~CharInputEvent() = default;
         EventType getType() { return EventType::CharInput; }
-        static EventType GetStaticType() { return EventType::CharInput; }
-        unsigned GetCharCode() const { return m_symbol; }
+        static EventType getStaticType() { return EventType::CharInput; }
+        uint32_t getCharCode() const { return m_symbol; }
 
     private:
-        unsigned m_symbol;
+        uint32_t m_symbol;
     };
 
     /*class RAINY_API KeyRepeatEvent : public Event
