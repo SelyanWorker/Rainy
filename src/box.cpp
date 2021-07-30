@@ -1,6 +1,6 @@
 #include "glad/glad.h"
 
-#include "3d/box.h"
+#include "geometry/3d/box.h"
 #include "core/input.h"
 #include "render/renderer.h"
 #include "render/shader_library.h"
@@ -10,7 +10,7 @@ namespace Rainy
     const float lt =
         (Vector3f{ 0, 0, -1 } + Vector3f{ 0, -1, 0 } + Vector3f{ 1, 0, 0 }).normalize().x;
 
-    Box::Vertex Box::m_vertices[8] = { { { -0.5f, -0.5f, -0.5f }, { 0, 0 }, { -lt, -lt, -lt } },
+    Rainy::Vertex3D Box::m_vertices[8] = { { { -0.5f, -0.5f, -0.5f }, { 0, 0 }, { -lt, -lt, -lt } },
                                        { { -0.5f, 0.5f, -0.5f }, { 0, 1 }, { -lt, lt, -lt } },
                                        { { 0.5f, 0.5f, -0.5f }, { 1, 1 }, { lt, lt, -lt } },
                                        { { 0.5f, -0.5f, -0.5f }, { 1, 0 }, { lt, -lt, -lt } },
@@ -33,7 +33,7 @@ namespace Rainy
 
     Box::Box(Vector3f size)
     {
-        m_vertexBuffer = VertexBuffer::Create(sizeof(Box::Vertex) * 8, m_vertices);
+        m_vertexBuffer = VertexBuffer::Create(sizeof(Rainy::Vertex3D) * 8, m_vertices);
         auto elements = { BufferElement(FLOAT3, false),
                           BufferElement(FLOAT2, false),
                           BufferElement(FLOAT3, false) };

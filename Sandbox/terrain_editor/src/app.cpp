@@ -1,4 +1,4 @@
-#include "3d/box.h"
+#include "geometry/3d/box.h"
 #include "application/entry_point.h"
 #include "camera/orthographic_camera.h"
 #include "camera/perspective_camera.h"

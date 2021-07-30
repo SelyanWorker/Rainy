@@ -1,6 +1,6 @@
 #pragma once
 
-#include "3d/box.h"
+#include "geometry/3d/box.h"
 #include "core/core.h"
 #include "math/math.h"
 #include "render/shader.h"
